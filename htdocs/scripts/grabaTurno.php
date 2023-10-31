@@ -19,13 +19,6 @@
         {
           echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
         }
-      
-        /*$insercion = "INSERT INTO socio VALUES (".$_REQUEST["socioID"]
-                               . ", '" . $_REQUEST["nombre"]
-                               . "', " . $_REQUEST["estatura"]
-                               . ", " . $_REQUEST["edad"]
-                               . ", '" . $_REQUEST["localidad"]."')";*/
-
         $insercion = "INSERT INTO turno (hora_inicio,hora_fin,plus) VALUES (?,?,?)";
         $stmt = $obj_conexion->prepare($insercion);
         if(isset($_REQUEST["plus"])){

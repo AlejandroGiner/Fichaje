@@ -1,64 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fichajes</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
--->
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap theme -->
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
+
     <link href="css/theme.css" rel="stylesheet">
 </head>
 <body>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Fichaje</a>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="" class="nav-link active">Link 1</a></li>
+                <li class="nav-item"><a href="" class="nav-link">Link 2</a></li>
+                <li class="nav-item"><a href="" class="nav-link">Link 3</a></li>
+            </ul>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </nav>
     <div class="container">
         <div class="panel panel-primary">
-            <div class="panel-heading text-center"><h2>Fichaje</h2></div>
+            <div class="panel-heading text-center"><h2>Turnos</h2></div>
 
             <?php
                 require_once('scripts/conn.php');
                 $obj_conexion = connect();
+
+                if(!$obj_conexion)
+        {
+          echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
+        }
+      
+        else
+        {
+
                 $var_consulta= "select * from turno";
                 $var_resultado = $obj_conexion->query($var_consulta);
+
+                if($var_resultado->num_rows>0)
+                { 
             ?>
             <table class="table table-striped">
             <tr><th>Hora inicio</th><th>Hora fin</th><th>Plus</th></tr>
@@ -74,8 +58,36 @@
               echo("<tr><td>".$var_fila["hora_inicio"]."</td>");
               echo("<td>".$var_fila["hora_fin"]."</td>");
               echo("<td>".$var_fila["plus"]."</td>");
-            }
             ?>
+            <td>
+            <form method="get" action="\scripts\modificaSocio.php">
+            <input type='hidden' name='hora_inicio' value='<?php echo $var_fila["hora_inicio"]?>'>
+            <input type='hidden' name='hora_fin' value='<?php echo $var_fila["hora_fin"]?>'>
+            <input type='hidden' name='plus' value='<?php echo $var_fila["plus"]?>'>
+            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> Modificar</button>
+            </form>
+            </td>
+            <td>
+            <form method="get" action="\scripts\borraSocio.php">
+            <input type='hidden' name='socioID' value='<?php echo $var_fila["socioID"]?>'>
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
+            </form>
+            </td>
+            </tr>
+
+            <?php
+            }
+          }
+          else
+          {
+            echo("<tr><td>");
+            echo "No hay Registros en la BBDD</td>";
+            echo("</td>");
+          }
+          $var_resultado->close();
+	        $obj_conexion->close();
+        }
+        ?>
             </table>
         </div>
     </div>

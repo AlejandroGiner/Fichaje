@@ -21,22 +21,24 @@
             </ul>
         </div>
     </nav>
-    <h1>Inicio de sesión</h1>
-    <form class="container border pt-5">
-        <div class="mb-3">
-            <label for="username" class="form-label">Nombre de usuario</label>
-            <input type="text" class="form-control form-control-lg" placeholder="Tu nombre de trabajador" id="username">
-        </div>
-        <div class="mb-3">
-            <label for="passwd" class="form-label">Contraseña</label>
-            <input type="password" class="form-control form-control-lg" id="passwd">
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="keepSession">
-            <label class="form-check-label" for="keepSession">Mantener sesión iniciada</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center"><h2>Inicio de sesión</h2></div>
+        <form class="container border pt-5">
+            <div class="mb-3">
+                <label for="username" class="form-label">Nombre de usuario</label>
+                <input type="text" class="form-control form-control-lg" placeholder="Tu nombre de trabajador" id="username">
+            </div>
+            <div class="mb-3">
+                <label for="passwd" class="form-label">Contraseña</label>
+                <input type="password" class="form-control form-control-lg" id="passwd">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="keepSession">
+                <label class="form-check-label" for="keepSession">Mantener sesión iniciada</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
