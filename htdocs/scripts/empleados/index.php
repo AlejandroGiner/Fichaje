@@ -15,7 +15,6 @@
     <?php
         include("../../header.php");
         ?>
-    
 
     <div class="container">
         <div class="panel panel-primary">
@@ -52,20 +51,37 @@
                             </form>
                             <?php
                             while($row = $result->fetch_array()){
+                                ?>
+                                <div class="modal fade" id="modificarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar empleado</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="#">
+                                                    <input type="text" name="dni" value='<?php print($row["dni"])?>)'>
+                                                    <input type="text" name="nombre" value='<?php print($row["nombre"])?>)'>
+                                                    <input type="text" name="apellido1" value='<?php print($row["apellido1"])?>)'>
+                                                    <input type="text" name="apellido2" value='<?php print($row["apellido2"])?>)'>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
                                 print("<tr><td>".$row["dni"]."</td>");
                                 print("<td>".$row["nombre"]."</td>");
                                 print("<td>".$row["apellido1"]."</td>");
                                 print("<td>".$row["apellido2"]."</td>");
                                 ?>
                                 <td>
-                                    <form action="#">
-                                        <input type="hidden" name="dni" value='<?php print($row["dni"])?>)'>
-                                        <input type="hidden" name="nombre" value='<?php print($row["nombre"])?>)'>
-                                        <input type="hidden" name="apellido1" value='<?php print($row["apellido1"])?>)'>
-                                        <input type="hidden" name="apellido2" value='<?php print($row["apellido2"])?>)'>
-                                        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus">Modificar</span></button>
-
-                                    </form>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarModal"><span class="glyphicon glyphicon-plus">Modificar</span></button>
                                 </td>
                                 <td>
                                     <form method="get" action="./eliminaEmpleado.php">
