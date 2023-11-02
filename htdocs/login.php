@@ -12,15 +12,9 @@
     <link href="/css/theme.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a href="" class="nav-link active">Link 1</a></li>
-                <li class="nav-item"><a href="" class="nav-link">Link 2</a></li>
-                <li class="nav-item"><a href="" class="nav-link">Link 3</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php
+        include("header.php");
+    ?>
     <div class="panel panel-primary">
         <div class="panel-heading text-center"><h2>Inicio de sesión</h2></div>
         <form class="container border pt-5 pb-5 ">
