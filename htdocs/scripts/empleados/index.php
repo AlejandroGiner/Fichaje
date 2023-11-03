@@ -14,7 +14,7 @@
 <body>
     <?php
         include("../../header.php");
-        ?>
+    ?>
 
     <div class="container">
         <div class="panel panel-primary">
@@ -31,7 +31,6 @@
                 else{
                     $query = "select * from empleado";
                     $result = $conn->query($query);
-                    #if($result->num_rows > 0){
                         ?>
                         <table class="table table-striped">
                             <tr>
@@ -94,19 +93,11 @@
                                 <?php
 
                             }
-                        #}
-                        #else{
-                        #    print("<tr><td>");
-                        #    print("No hay registros en la BBDD</td>");
-                        #    print("</tr>");
-                        #}
                         $result->close();
                         $conn->close();
                     }
                     ?>
                         </table>
-
-
         </div>
     </div>
 

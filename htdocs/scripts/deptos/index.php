@@ -14,9 +14,8 @@
 <body>
     <?php
         include("../../header.php");
-        ?>
+    ?>
     
-
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading text-center">
@@ -30,46 +29,40 @@
                     print("<h3>Fallo de conexión SQL.</h3><hr><br>");
                 }
                 else{
-                    $query = "select * from empleado";
+                    $query = "select * from departamento";
                     $result = $conn->query($query);
-                    #if($result->num_rows > 0){
                         ?>
                         <table class="table table-striped">
                             <tr>
-                                <th>DNI</th>
+                                <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Apellido 1</th>
-                                <th>Apellido 2</th>
+                                <th>Presupuesto</th>
                             </tr>
-                            <form method="get" action="./grabaEmpleado.php">
+                            <form method="get" action="./grabaDepartamento.php">
                                 <tr>
-                                    <td><input type="text" name="dni"></td>
-                                    <td><input type="text" name="nombre"></td>
-                                    <td><input type="text" name="apellido1"></td>
-                                    <td><input type="text" name="apellido2"></td>
-                                    <td><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus">Añadir</span></button></td>
+                                <td><input type="text" name="nombre"></td>
+                                <td><input type="text" name="presupuesto"></td>
+                                <td><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus">Añadir</span></button></td>
                                 </tr>
                             </form>
                             <?php
                             while($row = $result->fetch_array()){
-                                print("<tr><td>".$row["dni"]."</td>");
+                                print("<tr><td>".$row["id_departamento"]."</td>");
                                 print("<td>".$row["nombre"]."</td>");
-                                print("<td>".$row["apellido1"]."</td>");
-                                print("<td>".$row["apellido2"]."</td>");
+                                print("<td>".$row["presupuesto"]."</td>");
                                 ?>
                                 <td>
                                     <form action="#">
-                                        <input type="hidden" name="dni" value='<?php print($row["dni"])?>)'>
+                                        <input type="hidden" name="id_departamento" value='<?php print($row["id_departamento"])?>)'>
                                         <input type="hidden" name="nombre" value='<?php print($row["nombre"])?>)'>
-                                        <input type="hidden" name="apellido1" value='<?php print($row["apellido1"])?>)'>
-                                        <input type="hidden" name="apellido2" value='<?php print($row["apellido2"])?>)'>
+                                        <input type="hidden" name="presupuesto" value='<?php print($row["presupuesto"])?>)'>
                                         <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus">Modificar</span></button>
 
                                     </form>
                                 </td>
                                 <td>
-                                    <form method="get" action="./eliminaEmpleado.php">
-                                        <input type="hidden" name="dni" value='<?php print($row["dni"])?>'>
+                                    <form method="get" action="./eliminaDepartamento.php">
+                                        <input type="hidden" name="id_departamento" value='<?php print($row["id_departamento"])?>'>
                                         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
                                     </form>
                                 </td>
@@ -78,12 +71,6 @@
                                 <?php
 
                             }
-                        #}
-                        #else{
-                        #    print("<tr><td>");
-                        #    print("No hay registros en la BBDD</td>");
-                        #    print("</tr>");
-                        #}
                         $result->close();
                         $conn->close();
                     }
