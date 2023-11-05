@@ -34,7 +34,7 @@
       ?>
     
     <br>
-    <a href="empleados.php" class="btn btn-primary"><span class="glyphicon glyphicon-home"></span>Página principal</button>
+    <a href="index.php" class="btn btn-primary"><span class="glyphicon glyphicon-home"></span>Página principal</button>
 
 
     <!-- Bootstrap core JavaScript
