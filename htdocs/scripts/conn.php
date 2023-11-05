@@ -1,8 +1,8 @@
 <?php
 function connect(){
     $usuario = "root";
-    $paswd = "root";
+    $paswd = "alejandro";
     $bd = "fichajesdb";
-    $host = "localhost";
+    $host = "mysql_fichaje";
     return mysqli_connect($host,$usuario,$paswd,$bd);
 }
