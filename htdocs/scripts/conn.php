@@ -1,8 +1,12 @@
 <?php
+
 function connect(){
-    $usuario = "root";
-    $paswd = "alejandro";
-    $bd = "fichajesdb";
-    $host = "mysql_fichaje";
-    return mysqli_connect($host,$usuario,$paswd,$bd);
+
+    $config = parse_ini_file($_SERVER['DOCUMENT_ROOT']."/../config.ini");
+
+    $username = $config["username"];
+    $passwd = $config["passwd"];
+    $db = $config["db"];
+    $hostname = $config["hostname"];
+    return mysqli_connect($hostname,$username,$passwd,$db);
 }
