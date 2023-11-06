@@ -94,13 +94,13 @@
                                                                 <?php
                                                                     while($depto = $deptos->fetch_array()){
 
-                                                                        $cats = $conn->query("select * from categorias where id_departamento=".$depto['id']);
+                                                                        $cats = $conn->query("select * from categoria where id_departamento=".$depto['id_departamento']);
                                                                         ?>
                                                                         <optgroup label="<?php print($depto["nombre"])?>">
                                                                         <?php
                                                                             while($categoria = $cats->fetch_array()){
                                                                                 ?>
-                                                                                <option value="<?php $categoria['id_categoria'] ?>"><?php $categoria['nombre'] ?></option>
+                                                                                <option value="<?php $categoria['id_categoria'] ?>"><?php print($categoria['nombre']) ?></option>
                                                                             <?php
                                                                             }
                                                                             ?>
