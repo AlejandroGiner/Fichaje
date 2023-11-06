@@ -29,6 +29,9 @@
                     print("<h3>Fallo de conexión SQL.</h3><hr><br>");
                 }
                 else{
+                    $deptos_query = "select * from departamento";
+                    $deptos = $conn->query($deptos_query);
+
                     $query = "select * from empleado";
                     $result = $conn->query($query);
                         ?>
@@ -51,25 +54,69 @@
                             <?php
                             while($row = $result->fetch_array()){
                                 ?>
-                                <div class="modal fade" id="modificarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal modal-lg fade" id="modificarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar empleado</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="#">
-                                                    <input type="text" name="dni" value='<?php print($row["dni"])?>)'>
-                                                    <input type="text" name="nombre" value='<?php print($row["nombre"])?>)'>
-                                                    <input type="text" name="apellido1" value='<?php print($row["apellido1"])?>)'>
-                                                    <input type="text" name="apellido2" value='<?php print($row["apellido2"])?>)'>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
+                                            <form action="modificaEmpleado.php">
+                                                <div class="modal-body">
+                                                    <div class="row mb-3">
+                                                        <label for="dni" class="col-sm-2 col-form-label">DNI</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" name="dni" value='<?php print($row["dni"])?>'>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="nombre" class="col-sm-2 form-label">Nombre</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" name="nombre" value='<?php print($row["nombre"])?>'>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="apellido1" class="col-sm-2 form-label">Apellido 1</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" name="apellido1" value='<?php print($row["apellido1"])?>'>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="apellido2" class="col-sm-2 form-label">Apellido 2</label>
+                                                        <div class="col-sm-10">
+                                                            <input class="form-control" type="text" name="apellido2" value='<?php print($row["apellido2"])?>'>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="categoria" class="col-sm-2 form-label">Categoría</label>
+                                                        <div class="col-sm-10">
+                                                            <select name="categoria" id="categoria">
+                                                                <?php
+                                                                    while($depto = $deptos->fetch_array()){
+
+                                                                        $cats = $conn->query("select * from categorias where id_departamento=".$depto['id']);
+                                                                        ?>
+                                                                        <optgroup label="<?php print($depto["nombre"])?>">
+                                                                        <?php
+                                                                            while($categoria = $cats->fetch_array()){
+                                                                                ?>
+                                                                                <option value="<?php $categoria['id_categoria'] ?>"><?php $categoria['nombre'] ?></option>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                        </optgroup>
+                                                                    <?php
+                                                                    }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary btn-block">Save changes</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
