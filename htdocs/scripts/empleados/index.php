@@ -96,7 +96,7 @@
 
                                                                         $cats = $conn->query("select * from categoria where id_departamento=".$depto['id_departamento']);
                                                                         ?>
-                                                                        <optgroup label="<?php print($depto["nombre"])?>">
+                                                                        <optgroup label="Departamento: <?php print($depto["nombre"])?>">
                                                                         <?php
                                                                             while($categoria = $cats->fetch_array()){
                                                                                 ?>
