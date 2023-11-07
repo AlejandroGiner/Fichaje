@@ -34,7 +34,6 @@
                         ?>
                         <table class="table table-striped">
                             <tr>
-                                <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Presupuesto</th>
                             </tr>
@@ -47,7 +46,6 @@
                             </form>
                             <?php
                             while($row = $result->fetch_array()){
-                                print("<tr><td>".$row["id_departamento"]."</td>");
                                 print("<td>".$row["nombre"]."</td>");
                                 print("<td>".$row["presupuesto"]."</td>");
                                 ?>
