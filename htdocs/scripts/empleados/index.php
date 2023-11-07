@@ -53,9 +53,6 @@
                             </form>
                             <?php
                             while($row = $result->fetch_array()){
-                                ?>
-                                
-                                <?php
                                 print("<tr><td>".$row["dni"]."</td>");
                                 print("<td>".$row["nombre"]."</td>");
                                 print("<td>".$row["apellido1"]."</td>");
