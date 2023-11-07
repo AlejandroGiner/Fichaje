@@ -43,7 +43,7 @@
             <form method="get" action="/scripts/turno/grabaTurno.php">
                 <tr><td><input type="time" name="hora_inicio"></td>
                     <td><input type="time" name="hora_fin"></td>
-                    <td><input type="checkbox" name="plus"></td>
+                    <td><input type="checkbox" class="form-check-input" name="plus"></td>
                     <td><button type="submit" value="Añadir" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Añadir</button></td><td></td></tr>           
             </form>
             <?php 
