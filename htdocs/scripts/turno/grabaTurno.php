@@ -13,7 +13,7 @@
   <body>
 
   <?php
-        include_once("conn.php");
+        include_once($_SERVER["DOCUMENT_ROOT"]."/scripts/conn.php");
         $obj_conexion = connect();
         if(!$obj_conexion)
         {
@@ -29,7 +29,7 @@
 
         $stmt->bind_param('ssi',$_REQUEST["hora_inicio"],$_REQUEST["hora_fin"],$plus);
         $stmt->execute();
-            echo "<h3>Socio dado de alta correctamente.</h3>";
+            echo "<h3>Turno creado correctamente.</h3>";
       ?>
               <table class="table table-striped">
               <tr><th>Hora de inicio</th><th>Hora de fin</th><th>Plus</th></tr>
