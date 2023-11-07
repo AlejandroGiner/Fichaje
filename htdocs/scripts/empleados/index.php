@@ -54,72 +54,7 @@
                             <?php
                             while($row = $result->fetch_array()){
                                 ?>
-                                <div class="modal modal-lg fade" id="modificarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar empleado</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <form action="modificaEmpleado.php">
-                                                <div class="modal-body">
-                                                    <div class="row mb-3">
-                                                        <label for="dni" class="col-sm-2 col-form-label">DNI</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="text" name="dni" value='<?php print($row["dni"])?>'>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="nombre" class="col-sm-2 form-label">Nombre</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="text" name="nombre" value='<?php print($row["nombre"])?>'>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="apellido1" class="col-sm-2 form-label">Apellido 1</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="text" name="apellido1" value='<?php print($row["apellido1"])?>'>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="apellido2" class="col-sm-2 form-label">Apellido 2</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="text" name="apellido2" value='<?php print($row["apellido2"])?>'>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="categoria" class="col-sm-2 form-label">Categoría</label>
-                                                        <div class="col-sm-10">
-                                                            <select name="categoria" id="categoria">
-                                                                <?php
-                                                                    while($depto = $deptos->fetch_array()){
-
-                                                                        $cats = $conn->query("select * from categoria where id_departamento=".$depto['id_departamento']);
-                                                                        ?>
-                                                                        <optgroup label="Departamento: <?php print($depto["nombre"])?>">
-                                                                        <?php
-                                                                            while($categoria = $cats->fetch_array()){
-                                                                                ?>
-                                                                                <option value="<?php $categoria['id_categoria'] ?>"><?php print($categoria['nombre']) ?></option>
-                                                                            <?php
-                                                                            }
-                                                                            ?>
-                                                                        </optgroup>
-                                                                    <?php
-                                                                    }
-                                                                ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary btn-block">Save changes</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <?php
                                 print("<tr><td>".$row["dni"]."</td>");
                                 print("<td>".$row["nombre"]."</td>");
@@ -127,7 +62,12 @@
                                 print("<td>".$row["apellido2"]."</td>");
                                 ?>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarModal"><span class="glyphicon glyphicon-plus">Modificar</span></button>
+                                    <button type="button" class="btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#modificarEmpleadosModal"
+                                    data-bs-dni="<?php print($row["dni"])?>"
+                                    data-bs-nombre="<?php print($row["nombre"]) ?>"
+                                    data-bs-apellido1="<?php print($row["apellido1"]) ?>"
+                                    data-bs-apellido2="<?php print($row["apellido2"]) ?>"><span class="glyphicon glyphicon-plus">Modificar</span></button>
                                 </td>
                                 <td>
                                     <form method="get" action="./eliminaEmpleado.php">
@@ -140,6 +80,76 @@
                                 <?php
 
                             }
+
+                            ?>
+                            <!-- MODAL modificarEmpleado -->
+                            <div class="modal modal-lg fade" id="modificarEmpleadosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar empleado</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="modificaEmpleado.php">
+                                            <div class="modal-body">
+                                                <div class="row mb-3">
+                                                    <label for="dni" class="col-sm-2 col-form-label">DNI</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="dni">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="nombre" class="col-sm-2 form-label">Nombre</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="nombre">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="apellido1" class="col-sm-2 form-label">Apellido 1</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="apellido1">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="apellido2" class="col-sm-2 form-label">Apellido 2</label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="text" name="apellido2">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="categoria" class="col-sm-2 form-label">Categoría</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="categoria" id="categoria">
+                                                            <?php
+                                                                while($depto = $deptos->fetch_array()){
+
+                                                                    $cats = $conn->query("select * from categoria where id_departamento=".$depto['id_departamento']);
+                                                                    ?>
+                                                                    <optgroup label="Departamento: <?php print($depto["nombre"])?>">
+                                                                    <?php
+                                                                        while($categoria = $cats->fetch_array()){
+                                                                            ?>
+                                                                            <option value="<?php $categoria['id_categoria'] ?>"><?php print($categoria['nombre']) ?></option>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                    </optgroup>
+                                                                <?php
+                                                                }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary btn-block">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
                         $result->close();
                         $conn->close();
                     }
@@ -149,6 +159,8 @@
     </div>
 
 
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -156,6 +168,7 @@
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/docs.min.js"></script>
+    <script src="/js/modalModificarEmpleado.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/js/ie10-viewport-bug-workaround.js"></script>
 
