@@ -62,11 +62,12 @@
                                 print("<td>".$row["apellido2"]."</td>");
                                 ?>
                                 <td>
-                                    <button type="button" class="btn btn-primary" 
-                                    data-bs-toggle="modal" data-bs-target="#modificarEmpleadosModal" 
-                                    data-bs-nombre="<?php $row["nombre"] ?>"
-                                    data-bs-apellido1="<?php $row["apellido1"] ?>"
-                                    data-bs-apellido2="<?php $row["apellido2"] ?>"><span class="glyphicon glyphicon-plus">Modificar</span></button>
+                                    <button type="button" class="btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#modificarEmpleadosModal"
+                                    data-bs-dni="<?php print($row["dni"])?>"
+                                    data-bs-nombre="<?php print($row["nombre"]) ?>"
+                                    data-bs-apellido1="<?php print($row["apellido1"]) ?>"
+                                    data-bs-apellido2="<?php print($row["apellido2"]) ?>"><span class="glyphicon glyphicon-plus">Modificar</span></button>
                                 </td>
                                 <td>
                                     <form method="get" action="./eliminaEmpleado.php">
@@ -167,7 +168,7 @@
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/docs.min.js"></script>
-    <script src="/js/modalModificar.js"></script>
+    <script src="/js/modalModificarEmpleado.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/js/ie10-viewport-bug-workaround.js"></script>
 
