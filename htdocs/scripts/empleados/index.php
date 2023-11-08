@@ -13,7 +13,7 @@
 </head>
 <body>
     <?php
-        include("../../header.php");
+        include($_SERVER['DOCUMENT_ROOT']."/header.php");
     ?>
 
     <div class="container">
@@ -23,31 +23,56 @@
             </div>
 
             <?php
-                require_once('../conn.php');
+                require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
                 $conn = connect();
                 if(!$conn){
                     print("<h3>Fallo de conexión SQL.</h3><hr><br>");
                 }
                 else{
                     $deptos_query = "select * from departamento";
-                    $deptos = $conn->query($deptos_query);
+                    $deptos_result = $conn->query($deptos_query);
+                    $deptos = $deptos_result->fetch_all(MYSQLI_BOTH);
 
-                    $query = "select * from empleado";
+                    $query = "select * from empleado_completo";
                     $result = $conn->query($query);
                         ?>
-                        <table class="table table-striped">
+                        <table class="table table-striped table-hover">
                             <tr>
                                 <th>DNI</th>
                                 <th>Nombre</th>
                                 <th>Apellido 1</th>
                                 <th>Apellido 2</th>
+                                <th>Departamento</th>
+                                <th>Categoría</th>
                             </tr>
                             <form method="get" action="./grabaEmpleado.php">
                                 <tr>
-                                    <td><input type="text" name="dni"></td>
-                                    <td><input type="text" name="nombre"></td>
-                                    <td><input type="text" name="apellido1"></td>
-                                    <td><input type="text" name="apellido2"></td>
+                                    <td><input class="form-control" type="text" name="dni"></td>
+                                    <td><input class="form-control" type="text" name="nombre"></td>
+                                    <td><input class="form-control" type="text" name="apellido1"></td>
+                                    <td><input class="form-control" type="text" name="apellido2"></td>
+                                    <td><input class="form-control" type="text" name="departamento" readonly></td>
+                                    <td><select class="form-select" name="categoria" id="categoria1">
+                                        <option value="none" selected disabled hidden></option> 
+                                        <?php
+                                            foreach($deptos as &$depto){
+
+                                                $cats = $conn->query("select * from categoria where id_departamento=".$depto['id_departamento']);
+                                                ?>
+                                                <optgroup label="Departamento: <?php print($depto["nombre"])?>">
+                                                    
+                                                <?php
+                                                    while($categoria = $cats->fetch_array()){
+                                                        ?>
+                                                        <option data-bs-departamento="<?php print($depto['nombre'])?>" value="<?php print($categoria['id_categoria']) ?>"><?php print($categoria['nombre']) ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </optgroup>
+                                            <?php
+                                            }
+                                        ?>
+                                    </select></td>
                                     <td><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus">Añadir</span></button></td>
                                 </tr>
                             </form>
@@ -57,6 +82,8 @@
                                 print("<td>".$row["nombre"]."</td>");
                                 print("<td>".$row["apellido1"]."</td>");
                                 print("<td>".$row["apellido2"]."</td>");
+                                print("<td>".$row["departamento"]."</td>");
+                                print("<td>".$row["categoria"]."</td>");
                                 ?>
                                 <td>
                                     <button type="button" class="btn btn-primary"
@@ -64,13 +91,18 @@
                                     data-bs-dni="<?php print($row["dni"])?>"
                                     data-bs-nombre="<?php print($row["nombre"]) ?>"
                                     data-bs-apellido1="<?php print($row["apellido1"]) ?>"
-                                    data-bs-apellido2="<?php print($row["apellido2"]) ?>"><span class="glyphicon glyphicon-plus">Modificar</span></button>
+                                    data-bs-apellido2="<?php print($row["apellido2"]) ?>"
+                                    data-bs-categoria="<?php print($row["id_categoria"]) ?>"><span class="glyphicon glyphicon-plus">Modificar</span></button>
                                 </td>
                                 <td>
-                                    <form method="get" action="./eliminaEmpleado.php">
+                                <button type="button" class="btn btn-danger"
+                                    data-bs-toggle="modal" data-bs-target="#eliminarEmpleadosModal"
+                                    data-bs-dni="<?php print($row["dni"])?>"><span class="glyphicon glyphicon-plus">Eliminar</span></button>
+
+                                    <!--<form method="get" action="./eliminaEmpleado.php">
                                         <input type="hidden" name="dni" value='<?php print($row["dni"])?>'>
                                         <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
-                                    </form>
+                                    </form>-->
                                 </td>
                                 </tr>
 
@@ -84,41 +116,33 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar empleado</h1>
+                                            <h1 class="modal-title fs-5">Modificar empleado</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <form action="modificaEmpleado.php">
                                             <div class="modal-body">
-                                                <div class="row mb-3">
-                                                    <label for="dni" class="col-sm-2 col-form-label">DNI</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="dni">
-                                                    </div>
+                                                <div class="row form-floating mb-3">
+                                                    <input class="form-control" type="text" name="dni" id="dni" placeholder="" readonly>
+                                                    <label for="dni" class="col-sm-2 form-label">DNI</label>
                                                 </div>
-                                                <div class="row mb-3">
+                                                <div class="row form-floating mb-3">
+                                                    <input class="form-control" type="text" name="nombre" id="nombre" placeholder="">
                                                     <label for="nombre" class="col-sm-2 form-label">Nombre</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="nombre">
-                                                    </div>
                                                 </div>
-                                                <div class="row mb-3">
+                                                <div class="row form-floating mb-3">
+                                                    <input class="form-control" type="text" name="apellido1" id="apellido1" placeholder="">
                                                     <label for="apellido1" class="col-sm-2 form-label">Apellido 1</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="apellido1">
-                                                    </div>
                                                 </div>
-                                                <div class="row mb-3">
+                                                <div class="row form-floating mb-3">
+                                                    <input class="form-control" type="text" name="apellido2" id="apellido2" placeholder="">
                                                     <label for="apellido2" class="col-sm-2 form-label">Apellido 2</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="apellido2">
-                                                    </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <label for="categoria" class="col-sm-2 form-label">Categoría</label>
                                                     <div class="col-sm-10">
-                                                        <select name="categoria" id="categoria">
+                                                        <select class="form-select" name="categoria" id="categoria">
                                                             <?php
-                                                                while($depto = $deptos->fetch_array()){
+                                                                foreach($deptos as &$depto){
 
                                                                     $cats = $conn->query("select * from categoria where id_departamento=".$depto['id_departamento']);
                                                                     ?>
@@ -126,7 +150,7 @@
                                                                     <?php
                                                                         while($categoria = $cats->fetch_array()){
                                                                             ?>
-                                                                            <option value="<?php $categoria['id_categoria'] ?>"><?php print($categoria['nombre']) ?></option>
+                                                                            <option value="<?php print($categoria['id_categoria']) ?>"><?php print($categoria['nombre']) ?></option>
                                                                         <?php
                                                                         }
                                                                         ?>
@@ -140,12 +164,37 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary btn-block">Save changes</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- MODAL Eliminar empleado -->
+                            <div class="modal fade" id="eliminarEmpleadosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5">Eliminar empleado</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="eliminaEmpleado.php">
+                                            <div class="modal-body">
+                                                <p>Seguro?</p>
+                                                <input class="form-control" type="hidden" name="dni" id="eliminardni">
+                                            </div>
+                                        
+                                        
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-danger">Sí</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                         <?php
                         $result->close();
                         $conn->close();

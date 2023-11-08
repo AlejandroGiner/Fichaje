@@ -13,28 +13,29 @@
   <body>
 
   <?php
-        include("../../header.php");
-        include_once("../conn.php");
+        include($_SERVER['DOCUMENT_ROOT']."/header.php");
+        include_once($_SERVER['DOCUMENT_ROOT']."/scripts/conn.php");
         $conn = connect();
         if(!$conn)
         {
           echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
         }
 
-        $update = "UPDATE empleado SET dni=?, nombre=?, apellido1=?, apellido2=? WHERE dni=?";
+        $update = "UPDATE empleado SET dni=?, nombre=?, apellido1=?, apellido2=?, id_categoria=? WHERE dni=?";
         $stmt = $conn->prepare($update);
 
-        $stmt->bind_param('sssss',$_REQUEST["dni"],$_REQUEST["nombre"],$_REQUEST["apellido1"],$_REQUEST["apellido2"],$_REQUEST["dni"]);
+        $stmt->bind_param('ssssis',$_REQUEST["dni"],$_REQUEST["nombre"],$_REQUEST["apellido1"],$_REQUEST["apellido2"],$_REQUEST["categoria"],$_REQUEST["dni"]);
         $stmt->execute();
             echo "<h3>Empleado modificado correctamente.</h3>";
       ?>
               <table class="table table-striped">
-              <tr><th>DNI</th><th>Nombre</th><th>Apellido 1</th><th>Apellido 2</th></tr>
+              <tr><th>DNI</th><th>Nombre</th><th>Apellido 1</th><th>Apellido 2</th><th>Categoría</th></tr>
       <?php
             echo "<tr><td>".$_REQUEST["dni"]."</td>";
             echo "<td>".$_REQUEST["nombre"]."</td>";
             echo "<td>".$_REQUEST["apellido1"]."</td>";
             echo "<td>".$_REQUEST["apellido2"]."</td>";
+            echo "<td>".$_REQUEST["categoria"]."</td>";
             echo "</table>";
           $stmt->close();
           $conn->close();

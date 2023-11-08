@@ -13,9 +13,9 @@
 </head>
 <body>
     <?php
-        include("../../header.php");
+        include($_SERVER['DOCUMENT_ROOT']."/header.php");
 
-        include_once("../conn.php");
+        include_once($_SERVER['DOCUMENT_ROOT']."/scripts/conn.php");
         $conn = connect();
         if(!$conn)
         {

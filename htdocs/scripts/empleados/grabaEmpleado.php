@@ -13,18 +13,18 @@
   <body>
 
   <?php
-        include("../../header.php");
-        include_once("../conn.php");
+        include($_SERVER['DOCUMENT_ROOT']."/header.php");
+        include_once($_SERVER['DOCUMENT_ROOT']."/scripts/conn.php");
         $conn = connect();
         if(!$conn)
         {
           echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
         }
 
-        $insert = "INSERT INTO empleado (dni,nombre,apellido1,apellido2) VALUES (?,?,?,?)";
+        $insert = "INSERT INTO empleado (dni,nombre,apellido1,apellido2,id_categoria) VALUES (?,?,?,?,?)";
         $stmt = $conn->prepare($insert);
 
-        $stmt->bind_param('ssss',$_REQUEST["dni"],$_REQUEST["nombre"],$_REQUEST["apellido1"],$_REQUEST["apellido2"]);
+        $stmt->bind_param('ssssi',$_REQUEST["dni"],$_REQUEST["nombre"],$_REQUEST["apellido1"],$_REQUEST["apellido2"],$_REQUEST["categoria"]);
         $stmt->execute();
             echo "<h3>Empleado dado de alta correctamente.</h3>";
       ?>
