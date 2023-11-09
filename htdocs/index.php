@@ -20,18 +20,17 @@
         <div class="panel panel-primary">
             <div class="panel-heading text-center"><h2>Fichaje</h2></div>
 
-            <h1>Autentificación PHP</h1>
+            <h1>Iniciar sesión</h1>
             <form class="container border pt-5 pb-5 " action="control.php" method="POST">
                 <?php
-                $errorusuario = $_GET["errorusuario"] ?? "";
-                    if ($errorusuario=="si"){ ?>
+                    if (array_key_exists('login_error',$_GET)){ ?>
                     <div class="alert alert-danger" role="alert">
                         Usuario o contraseña incorrectos.
                     </div>
                 <?php } ?>
                 <div class="mb-3">
                     <label for="username" class="form-label">Nombre de usuario</label>
-                    <input type="text" class="form-control form-control-lg" placeholder="Tu nombre de trabajador" id="username" name="username">
+                    <input type="text" class="form-control form-control-lg" id="username" name="username">
                 </div>
                 <div class="mb-3">
                     <label for="passwd" class="form-label">Contraseña</label>
