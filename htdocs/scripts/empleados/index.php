@@ -1,3 +1,4 @@
+<?php include ($_SERVER['DOCUMENT_ROOT']."/seguridad.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
