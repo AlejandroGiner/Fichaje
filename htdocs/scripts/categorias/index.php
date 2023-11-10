@@ -49,9 +49,9 @@
                             <form method="get" action="./grabaCategoria.php">
                                 <tr>
                                     <td><input class="form-control" type="text" name="nombre"></td>
-                                    <td><input class="form-control" type="text" name="apellido1"></td>
-                                    <td><input class="form-control" type="text" name="apellido2"></td>
-                                    <td><select class="form-select" name="departamento" id="departamento">
+                                    <td><input class="form-control" type="text" name="sueldo_base"></td>
+                                    <td><input class="form-control" type="text" disabled></td>
+                                    <td><select class="form-select" name="id_departamento" id="id_departamento">
                                         <option value="none" selected disabled hidden></option> 
 
                                         <?php
