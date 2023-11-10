@@ -80,7 +80,8 @@
                                 </td>
                                 <td>
                                 <button type="button" class="btn btn-danger"
-                                    data-bs-toggle="modal" data-bs-target="#eliminarCategoriasModal">
+                                    data-bs-toggle="modal" data-bs-target="#eliminarCategoriasModal"
+                                    data-bs-id-categoria="<?php print($row['id_categoria']); ?>">
                                     Eliminar
                                 </button>
                                 </td>
