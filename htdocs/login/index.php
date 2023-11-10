@@ -1,4 +1,3 @@
-<?php include ($_SERVER['DOCUMENT_ROOT']."/seguridad.php");?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +21,7 @@
             <div class="panel-heading text-center"><h2>Fichaje</h2></div>
 
             <h1>Iniciar sesión</h1>
-            <form class="container border pt-5 pb-5 " action="control.php" method="POST">
+            <form class="container border pt-5 pb-5 " action="/control.php" method="POST">
                 <?php
                     if (array_key_exists('login_error',$_GET)){ ?>
                     <div class="alert alert-danger" role="alert">
