@@ -14,7 +14,7 @@
                     <a href="/scripts/deptos/" class="nav-link">Departamentos</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/scripts/categoria/" class="nav-link">Categorías</a>
+                    <a href="/scripts/categorias/" class="nav-link">Categorías</a>
                 </li>
                 <li class="nav-item">
                     <a href="/scripts/turno/" class="nav-link">Turnos</a>
