@@ -77,11 +77,11 @@
                                     print("<td>".$row["id_departamento"]."</td>");
                                     ?>
                                     <td>
-                                        <button type="button" class="btn btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#modificarCategoriasModal"
-                                        data-bs-nombre="<?php print($row['nombre']); ?>"
-                                        data-bs-sueldo-base="<?php print($row['sueldo_base']); ?>""
-                                        data-bs-departamento="<?php print($row['id_departamento']); ?>"">
+                                        <button type="button" class="btn btn-primary" 
+                                        data-bs-toggle="modal" data-bs-target="#modificarCategoriasModal" 
+                                        data-bs-nombre="<?php print($row['nombre']); ?>" 
+                                        data-bs-sueldo-base="<?php print($row['sueldo_base']); ?>"
+                                        data-bs-departamento="<?php print($row['id_departamento']); ?>">
                                             Modificar
                                         </button>
                                     </td>
