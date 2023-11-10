@@ -67,12 +67,10 @@
                             </form>
                             <?php
                             while($row = $result->fetch_array()){
-                                print("<tr><td>".$row["dni"]."</td>");
                                 print("<td>".$row["nombre"]."</td>");
-                                print("<td>".$row["apellido1"]."</td>");
-                                print("<td>".$row["apellido2"]."</td>");
-                                print("<td>".$row["departamento"]."</td>");
-                                print("<td>".$row["categoria"]."</td>");
+                                print("<td>".$row["sueldo_base"]."</td>");
+                                print("<td>".$row["sueldo_plus"]."</td>");
+                                print("<td>".$row["id_departamento"]."</td>");
                                 ?>
                                 <td>
                                     <button type="button" class="btn btn-primary"
