@@ -80,8 +80,7 @@
                                 </td>
                                 <td>
                                 <button type="button" class="btn btn-danger"
-                                    data-bs-toggle="modal" data-bs-target="#eliminarEmpleadosModal"
-                                    data-bs-dni="<?php print($row["dni"])?>"><span class="glyphicon glyphicon-plus">Eliminar</span></button>
+                                    data-bs-toggle="modal" data-bs-target="#eliminarEmpleadosModal"><span class="glyphicon glyphicon-plus">Eliminar</span></button>
 
                                     <!--<form method="get" action="./eliminaEmpleado.php">
                                         <input type="hidden" name="dni" value='<?php print($row["dni"])?>'>
