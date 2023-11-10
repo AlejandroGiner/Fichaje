@@ -37,6 +37,8 @@
                     $query = "select * from empleado_completo";
                     $result = $conn->query($query);
                         ?>
+                        <div class="table-responsive">
+
                         <table class="table table-striped table-hover">
                             <tr>
                                 <th>DNI</th>
@@ -202,6 +204,7 @@
                     }
                     ?>
                         </table>
+                        </div>
         </div>
     </div>
 
