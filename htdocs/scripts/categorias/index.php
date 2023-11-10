@@ -74,12 +74,9 @@
                                 ?>
                                 <td>
                                     <button type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#modificarEmpleadosModal"
-                                    data-bs-dni="<?php print($row["dni"])?>"
-                                    data-bs-nombre="<?php print($row["nombre"]) ?>"
-                                    data-bs-apellido1="<?php print($row["apellido1"]) ?>"
-                                    data-bs-apellido2="<?php print($row["apellido2"]) ?>"
-                                    data-bs-categoria="<?php print($row["id_categoria"]) ?>"><span class="glyphicon glyphicon-plus">Modificar</span></button>
+                                    data-bs-toggle="modal" data-bs-target="#modificarEmpleadosModal">
+                                        <span class="glyphicon glyphicon-plus">Modificar</span>
+                                    </button>
                                 </td>
                                 <td>
                                 <button type="button" class="btn btn-danger"
