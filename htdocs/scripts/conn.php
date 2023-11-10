@@ -8,5 +8,7 @@ function connect(){
     $passwd = $config["passwd"];
     $db = $config["db"];
     $hostname = $config["hostname"];
-    return mysqli_connect($hostname,$username,$passwd,$db);
+    $sqli = mysqli_connect($hostname,$username,$passwd,$db);
+    $sqli->set_charset('utf8');
+    return $sqli;
 }
