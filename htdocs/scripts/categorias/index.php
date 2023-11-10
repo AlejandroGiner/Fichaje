@@ -62,7 +62,7 @@
                                             }
                                         ?>
                                     </select></td>
-                                    <td><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus">Añadir</span></button></td>
+                                    <td><button type="submit" class="btn btn-info">Añadir</button></td>
                                 </tr>
                             </form>
                             <?php
@@ -74,18 +74,15 @@
                                 ?>
                                 <td>
                                     <button type="button" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#modificarEmpleadosModal">
-                                        <span class="glyphicon glyphicon-plus">Modificar</span>
+                                    data-bs-toggle="modal" data-bs-target="#modificarCategoriasModal">
+                                        Modificar
                                     </button>
                                 </td>
                                 <td>
                                 <button type="button" class="btn btn-danger"
-                                    data-bs-toggle="modal" data-bs-target="#eliminarEmpleadosModal"><span class="glyphicon glyphicon-plus">Eliminar</span></button>
-
-                                    <!--<form method="get" action="./eliminaEmpleado.php">
-                                        <input type="hidden" name="dni" value='<?php print($row["dni"])?>'>
-                                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
-                                    </form>-->
+                                    data-bs-toggle="modal" data-bs-target="#eliminarCategoriasModal">
+                                    Eliminar
+                                </button>
                                 </td>
                                 </tr>
 
@@ -154,18 +151,18 @@
                                 </div>
                             </div>
 
-                            <!-- MODAL Eliminar empleado -->
-                            <div class="modal fade" id="eliminarEmpleadosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <!-- MODAL Eliminar categorias -->
+                            <div class="modal fade" id="eliminarCategoriasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5">Eliminar empleado</h1>
+                                            <h1 class="modal-title fs-5">Eliminar categoría</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form action="eliminaEmpleado.php">
+                                        <form action="eliminaCategoria.php">
                                             <div class="modal-body">
-                                                <p>Seguro?</p>
-                                                <input class="form-control" type="hidden" name="dni" id="eliminardni">
+                                                <p>¿Estás seguro?</p>
+                                                <input class="form-control" type="hidden" name="id_categoria" id="id_categoria_eliminar">
                                             </div>
                                         
                                         
