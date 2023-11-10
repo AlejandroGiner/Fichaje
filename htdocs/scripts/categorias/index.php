@@ -93,49 +93,31 @@
 
                             ?>
                             <!-- MODAL modificarEmpleado -->
-                            <div class="modal modal-lg fade" id="modificarEmpleadosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal modal-lg fade" id="modificarCategoriasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5">Modificar empleado</h1>
+                                            <h1 class="modal-title fs-5">Modificar categoría</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form action="modificaEmpleado.php">
+                                        <form action="modificaCategoria.php">
                                             <div class="modal-body">
-                                                <div class="row form-floating mb-3">
-                                                    <input class="form-control" type="text" name="dni" id="dni" placeholder="" readonly>
-                                                    <label for="dni" class="col-sm-2 form-label">DNI</label>
-                                                </div>
                                                 <div class="row form-floating mb-3">
                                                     <input class="form-control" type="text" name="nombre" id="nombre" placeholder="">
                                                     <label for="nombre" class="col-sm-2 form-label">Nombre</label>
                                                 </div>
                                                 <div class="row form-floating mb-3">
-                                                    <input class="form-control" type="text" name="apellido1" id="apellido1" placeholder="">
-                                                    <label for="apellido1" class="col-sm-2 form-label">Apellido 1</label>
-                                                </div>
-                                                <div class="row form-floating mb-3">
-                                                    <input class="form-control" type="text" name="apellido2" id="apellido2" placeholder="">
-                                                    <label for="apellido2" class="col-sm-2 form-label">Apellido 2</label>
+                                                    <input class="form-control" type="text" name="sueldo_base" id="sueldo_base" placeholder="">
+                                                    <label for="sueldo_base" class="col-sm-2 form-label">Sueldo base</label>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="categoria" class="col-sm-2 form-label">Categoría</label>
+                                                    <label for="categoria" class="col-sm-2 form-label">Departamento</label>
                                                     <div class="col-sm-10">
                                                         <select class="form-select" name="categoria" id="categoria">
                                                             <?php
                                                                 foreach($deptos as &$depto){
-
-                                                                    $cats = $conn->query("select * from categoria where id_departamento=".$depto['id_departamento']);
                                                                     ?>
-                                                                    <optgroup label="Departamento: <?php print($depto["nombre"])?>">
-                                                                    <?php
-                                                                        while($categoria = $cats->fetch_array()){
-                                                                            ?>
-                                                                            <option value="<?php print($categoria['id_categoria']) ?>"><?php print($categoria['nombre']) ?></option>
-                                                                        <?php
-                                                                        }
-                                                                        ?>
-                                                                    </optgroup>
+                                                                    <option value="<?php print($depto['id_departamento']) ?>"><?php print($depto['nombre']) ?></option>
                                                                 <?php
                                                                 }
                                                             ?>
