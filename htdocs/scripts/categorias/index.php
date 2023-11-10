@@ -20,7 +20,7 @@
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading text-center">
-                <h2>Empleados</h2>
+                <h2>Categorías</h2>
             </div>
 
             <?php
