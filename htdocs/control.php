@@ -29,7 +29,7 @@ if (isset($_SESSION['username'])){
     header ("Location: scripts/empleados");
 } else {
     //si no existe le mando otra vez a la portada
-    header("Location: index.php?login_error");
+    header("Location: /login/index.php?login_error");
 }
 
 

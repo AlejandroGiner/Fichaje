@@ -1,25 +1,43 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Fichaje</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a href="/scripts/empleados/" class="nav-link">Empleados</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/scripts/deptos/" class="nav-link">Departamentos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/scripts/categorias/" class="nav-link">Categorías</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/scripts/turno/" class="nav-link">Turnos</a>
-                </li>
-            </ul>
-        </div>
+
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none navbar-brand">
+      <i class="bi bi-clock-history" style="font-size: 2rem;"></i>
+    </a>
+
+    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+
+        <a href="#" class="nav-link px-5 active">
+          <i class="bi bi-house d-block mb-1 mx-auto text-center d-none d-xl-block" style="font-size: 2rem;"></i>Home
+        </a>
+        
+        <a href="#" class="nav-link px-5">
+          <i class="bi bi-speedometer2 d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Panel de control
+        </a>
+
+        <a href="/scripts/categorias" class="nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'categorias')){print('active');}?>">
+          <i class="bi bi-table d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Categorías
+        </a>
+
+        <a href="/scripts/departamentos" class="nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'departamentos')){print('active');}?>">
+          <i class="bi bi-grid d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Departamentos
+        </a>
+
+        <a href="/scripts/empleados" class="nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'empleados')){print('active');}?>">
+          <i class="bi bi-people-fill d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Empleados
+        </a>
+
+        <a href="/salir.php" class="nav-link px-5">
+          <i class="bi bi-door-closed d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Cerrar sesión
+        </a>
+      </div>
     </div>
+
+  </div>
 </nav>
