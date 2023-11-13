@@ -32,6 +32,12 @@ if(isset($_SESSION['username'])){
                         Usuario o contraseña incorrectos.
                     </div>
                 <?php } ?>
+                <?php
+                    if (array_key_exists('session_expired',$_GET)){ ?>
+                    <div class="alert alert-danger" role="alert">
+                        Tu sesión ha caducado.
+                    </div>
+                <?php } ?>
                 <div class="mb-3">
                     <label for="username" class="form-label">Nombre de usuario</label>
                     <input type="text" class="form-control form-control-lg" id="username" name="username">
