@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Empleados - Fichajes</title>
+    <title>Categorías - Fichajes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
@@ -62,7 +62,7 @@
                                                 }
                                             ?>
                                         </select></td>
-                                        <td><button type="submit" class="btn btn-info">Añadir</button></td>
+                                        <td><button type="submit" class="btn btn-info bi bi-plus-lg"> Añadir</button></td>
                                     </form>
                                 </tr>
                                 <?php
@@ -73,8 +73,9 @@
                                     print("<td>".$row["id_departamento"]."</td>");
                                     ?>
                                     <td>
-                                        <button type="button" class="btn btn-primary" 
-                                        data-bs-toggle="modal" data-bs-target="#modificarCategoriasModal" 
+                                        <button type="button" class="btn btn-primary bi bi-pencil-square" 
+                                        data-bs-toggle="modal" data-bs-target="#modificarCategoriasModal"
+                                        data-bs-id-categoria='<?php print($row['id_categoria']); ?>'
                                         data-bs-nombre="<?php print($row['nombre']); ?>" 
                                         data-bs-sueldo-base="<?php print($row['sueldo_base']); ?>"
                                         data-bs-departamento="<?php print($row['id_departamento']); ?>">
@@ -82,7 +83,7 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger"
+                                        <button type="button" class="btn btn-danger bi bi-trash"
                                             data-bs-toggle="modal" data-bs-target="#eliminarCategoriasModal"
                                             data-bs-id-categoria="<?php print($row['id_categoria']); ?>">
                                             Eliminar
@@ -105,7 +106,7 @@
                     ?>
                         </table>
                         </div>
-                    <!-- MODAL modificarEmpleado -->
+                    <!-- MODAL modificarCategorias -->
                     <div class="modal modal-lg fade" id="modificarCategoriasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
@@ -115,6 +116,7 @@
                                         </div>
                                         <form action="modificaCategoria.php">
                                             <div class="modal-body">
+                                                <input type="hidden" name="id_categoria" id="id_categoria">
                                                 <div class="row form-floating mb-3">
                                                     <input class="form-control" type="text" name="nombre" id="nombre" placeholder="">
                                                     <label for="nombre" class="col-sm-2 form-label">Nombre</label>
@@ -126,7 +128,7 @@
                                                 <div class="row mb-3">
                                                     <label for="categoria" class="col-sm-2 form-label">Departamento</label>
                                                     <div class="col-sm-10">
-                                                        <select class="form-select" name="categoria" id="categoria">
+                                                        <select class="form-select" name="id_departamento" id="id_departamento">
                                                             <?php
                                                                 foreach($deptos as &$depto){
                                                                     ?>
@@ -176,6 +178,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+    <script src='/js/modalCategoria.js'></script>
 </body>
 </html>

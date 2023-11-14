@@ -4,31 +4,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Fichaje - Departamentos</title>
+    <title>Categorías - Fichaje</title>
   </head>
   <body>
 
   <?php
-        include("../../header.php");
-        include_once("../conn.php");
+        include($_SERVER['DOCUMENT_ROOT']."/header.php");
+        include_once($_SERVER['DOCUMENT_ROOT']."/scripts/conn.php");
         $conn = connect();
         if(!$conn)
         {
           echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
         }
 
-        $update = "UPDATE departamento SET nombre=?, presupuesto=? WHERE id_departamento=?";
+        $update = "UPDATE categoria SET nombre=?, sueldo_base=?, id_departamento=? WHERE id_categoria=?";
         $stmt = $conn->prepare($update);
 
-        $stmt->bind_param('ssi',$_REQUEST["nombre"],$_REQUEST["presupuesto"],$_REQUEST["id_departamento"]);
+        $stmt->bind_param('ssii',$_REQUEST["nombre"],$_REQUEST["sueldo_base"],$_REQUEST["id_departamento"],$_REQUEST["id_categoria"]);
         $stmt->execute();
-            echo "<h3>Departamento modificado correctamente.</h3>";
+            echo "<h3>Categoría modificada correctamente.</h3>";
       ?>
               <table class="table table-striped">
-              <tr><th>Nombre</th><th>Presupuesto</th><th>ID departamento</th></tr>
+              <tr><th>Nombre</th><th>Sueldo base</th><th>Departamento</th></tr>
       <?php
             echo "<td>".$_REQUEST["nombre"]."</td>";
-            echo "<td>".$_REQUEST["presupuesto"]."</td>";
+            echo "<td>".$_REQUEST["sueldo_base"]."</td>";
             echo "<td>".$_REQUEST["id_departamento"]."</td>";
             echo "</table>";
           $stmt->close();

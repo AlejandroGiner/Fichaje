@@ -11,20 +11,44 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
 
+        <a href="/scripts/turnos_publicados" class='nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'turnos_publicados')){print('active');}?>'>
+          <i class='bi-calendar-week d-block mb-1 text-center d-none d-xl-block' style='font-size: 2rem;'></i>Turnos publicados
+        </a>
+        <?php /*
         <a href="/scripts/categorias" class="nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'categorias')){print('active');}?>">
-          <i class="bi bi-diagram-2-fill d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Categorías
+          <i class="bi-diagram-2-fill d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Categorías
         </a>
 
         <a href="/scripts/departamentos" class="nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'departamentos')){print('active');}?>">
-          <i class="bi bi-grid d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Departamentos
+          <i class="bi-grid d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Departamentos
         </a>
 
         <a href="/scripts/empleados" class="nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'empleados')){print('active');}?>">
-          <i class="bi bi-people-fill d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Empleados
+          <i class="bi-people-fill d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Empleados
         </a>
-
+        */ ?>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi-building-fill-gear d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Administración
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item <?php if(str_contains($_SERVER['PHP_SELF'],'empleados/')){print('active');}?>" href="/scripts/empleados">
+              <i class="bi-people-fill"></i> Empleados
+            </a></li>
+            <li><a class="dropdown-item <?php if(str_contains($_SERVER['PHP_SELF'],'turnos/')){print('active');}?>" href="/scripts/turnos">
+              <i class="bi-clock-fill"></i> Turnos
+            </a></li>
+            <li><a class="dropdown-item <?php if(str_contains($_SERVER['PHP_SELF'],'departamentos/')){print('active');}?>" href="/scripts/departamentos">
+            <i class="bi-grid"></i> Departamentos
+            </a></li>
+            <li><a class="dropdown-item <?php if(str_contains($_SERVER['PHP_SELF'],'categorias/')){print('active');}?>" href="/scripts/categorias">
+            <i class="bi-diagram-2-fill"></i> Categorías
+            </a></li>
+          </ul>
+        </div>
+          
         <a href="/logout.php" class="nav-link px-5">
-          <i class="bi bi-door-closed d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Cerrar sesión
+          <i class="bi-door-closed d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Cerrar sesión
         </a>
       </div>
     </div>

@@ -93,17 +93,12 @@
                                     data-bs-nombre="<?php print($row["nombre"]) ?>"
                                     data-bs-apellido1="<?php print($row["apellido1"]) ?>"
                                     data-bs-apellido2="<?php print($row["apellido2"]) ?>"
-                                    data-bs-categoria="<?php print($row["id_categoria"]) ?>">Modificar</button>
+                                    data-bs-categoria="<?php print($row["id_categoria"]) ?>"> Modificar</button>
                                 </td>
                                 <td>
-                                <button type="button" class="btn btn-danger bi bi-trash"
+                                    <button type="button" class="btn btn-danger bi bi-trash"
                                     data-bs-toggle="modal" data-bs-target="#eliminarEmpleadosModal"
-                                    data-bs-dni="<?php print($row["dni"])?>">Eliminar</button>
-
-                                    <!--<form method="get" action="./eliminaEmpleado.php">
-                                        <input type="hidden" name="dni" value='<?php print($row["dni"])?>'>
-                                        <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>Eliminar</button>
-                                    </form>-->
+                                    data-bs-dni="<?php print($row["dni"])?>"> Eliminar</button>
                                 </td>
                                 </tr>
 

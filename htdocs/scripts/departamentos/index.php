@@ -37,8 +37,8 @@
                             </tr>
                             <form method="get" action="./grabaDepartamento.php">
                                 <tr>
-                                <td><input type="text" name="nombre"></td>
-                                <td><input type="text" name="presupuesto"></td>
+                                <td><input class="form-control" type="text" name="nombre"></td>
+                                <td><input class="form-control" type="text" name="presupuesto"></td>
                                 <td><button type="submit" class="btn btn-info bi bi-plus-lg"> Añadir</button></td>
                                 </tr>
                             </form>
@@ -48,13 +48,11 @@
                                 print("<td>".$row["presupuesto"]."</td>");
                                 ?>
                                 <td>
-                                    <form action="#">
-                                        <input type="hidden" name="id_departamento" value='<?php print($row["id_departamento"])?>)'>
-                                        <input type="hidden" name="nombre" value='<?php print($row["nombre"])?>)'>
-                                        <input type="hidden" name="presupuesto" value='<?php print($row["presupuesto"])?>)'>
-                                        <button type="submit" class="btn btn-primary bi bi-pencil-square"> Modificar</button>
-
-                                    </form>
+                                    <button type="button" class="btn btn-primary bi bi-pencil-square"
+                                    data-bs-toggle='modal' data-bs-target='#modificarDepartamentoModal'
+                                    data-bs-nombre='<?php print($row['nombre']); ?>'
+                                    data-bs-presupuesto='<?php print($row['presupuesto']); ?>'
+                                    data-bs-id-departamento='<?php print($row['id_departamento']); ?>'> Modificar</button>
                                 </td>
                                 <td>
                                     <form method="get" action="./eliminaDepartamento.php">
@@ -71,6 +69,35 @@
                         $conn->close();
                     }
                     ?>
+
+                    <!-- MODAL modificarDepartamento -->
+                    <div class="modal modal-lg fade" id="modificarDepartamentoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5">Modificar departamento</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action='modificaDepartamento.php'>
+                                            <div class='modal-body'>
+                                                <input type='hidden' name='id_departamento' id='id_departamento'>
+                                                <div class='row form-floating mb-3'>
+                                                    <input class='form-control' type='text' name='nombre' id='nombre' placeholder=''>
+                                                    <label for='nombre' class='col-sm-2 form-label'>Nombre</label>
+                                                </div>
+                                                <div class='row form-floating mb-3'>
+                                                    <input class='form-control' type='text' name='presupuesto' id='presupuesto' placeholder=''>
+                                                    <label for="presupuesto" class="col-sm-2 form-label">Presupuesto</label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </table>
 
 
@@ -78,6 +105,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src='/js/modalDepartamento.js'></script>
 
 </body>
 </html>

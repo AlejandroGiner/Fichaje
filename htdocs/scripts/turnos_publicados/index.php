@@ -57,6 +57,7 @@
 
 
         <!-- MODAL nuevoTurnoPublicado -->
+        
         <div class="modal modal-lg fade" id="nuevoTurnoPublicadoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -66,7 +67,7 @@
                     </div>
                     <form action="grabaTurnoPublicado.php">
                         <div class="modal-body">
-                            <div class="row form-floating mb-3">
+                            <div class="row mb-3">
                                 <label for="turno" class="form-label">Turno</label>
                                 <select class="form-select" name="turno" id="turno">
                                 <?php
@@ -76,22 +77,23 @@
                                     <option value="<?php print($row['id_turno']) ?>"><?php print($row['nombre']) ?></option> <?php
                                 }
                                 ?>
+                                </select>
                             </div>
-                            <div class="row form-floating mb-3">
-                                <input class="form-control" type="text" name="nombre" id="nombre" placeholder="">
-                                <label for="nombre" class="form-label">Departamento</label>
+                            <div class="row mb-3">
+                                <label for="departamento" class="form-label">Departamento</label>
+                                <input class="form-control" type="date" name="departamento" id="departamento" placeholder="">
                             </div>
-                            <div class="row form-floating mb-3">
-                                <input class="form-control" type="text" name="apellido1" id="apellido1" placeholder="">
-                                <label for="apellido1" class="form-label">Categoría</label>
+                            <div class="row mb-3">
+                                <label for="categoria" class="form-label">Categoría</label>
+                                <input class="form-control" type="text" name="categoria" id="categoria" placeholder="">
                             </div>
-                            <div class="row form-floating mb-3">
-                                <input class="form-control" type="text" name="apellido2" id="apellido2" placeholder="">
-                                <label for="apellido2" class="form-label">Fecha</label>
+                            <div class="row mb-3">
+                                <label for="fecha" class="form-label">Fecha</label>
+                                <input class="form-control" type="text" name="fecha" id="fecha" placeholder="">
                             </div>
-                            <div class="row form-floating mb-3">
-                                <input class="form-control" type="text" name="apellido2" id="apellido2" placeholder="">
-                                <label for="apellido2" class="form-label">Número de turnos</label>
+                            <div class="row mb-3">
+                                <label for="n_turnos" class="form-label">Número de turnos</label>
+                                <input class="form-control" type="text" name="n_turnos" id="n_turnos" placeholder="">
                             </div>
                         </div>
                         <div class="modal-footer">
