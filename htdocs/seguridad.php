@@ -1,6 +1,6 @@
 <?php
 
-const MAX_SESSION_LENGTH_SECONDS = 600;
+const MAX_SESSION_LENGTH_SECONDS = INF;
 
 //Inicio la sesión
 session_start();

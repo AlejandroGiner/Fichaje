@@ -74,7 +74,7 @@
                                             }
                                         ?>
                                     </select></td>
-                                    <td><button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus">Añadir</span></button></td>
+                                    <td><button type="submit" class="btn btn-info bi bi-plus-lg"> Añadir</button></td>
                                 </tr>
                             </form>
                             <?php
@@ -87,18 +87,18 @@
                                 print("<td>".$row["categoria"]."</td>");
                                 ?>
                                 <td>
-                                    <button type="button" class="btn btn-primary"
+                                    <button type="button" class="btn btn-primary bi bi-pencil-square"
                                     data-bs-toggle="modal" data-bs-target="#modificarEmpleadosModal"
                                     data-bs-dni="<?php print($row["dni"])?>"
                                     data-bs-nombre="<?php print($row["nombre"]) ?>"
                                     data-bs-apellido1="<?php print($row["apellido1"]) ?>"
                                     data-bs-apellido2="<?php print($row["apellido2"]) ?>"
-                                    data-bs-categoria="<?php print($row["id_categoria"]) ?>"><span class="glyphicon glyphicon-plus">Modificar</span></button>
+                                    data-bs-categoria="<?php print($row["id_categoria"]) ?>">Modificar</button>
                                 </td>
                                 <td>
-                                <button type="button" class="btn btn-danger"
+                                <button type="button" class="btn btn-danger bi bi-trash"
                                     data-bs-toggle="modal" data-bs-target="#eliminarEmpleadosModal"
-                                    data-bs-dni="<?php print($row["dni"])?>"><span class="glyphicon glyphicon-plus">Eliminar</span></button>
+                                    data-bs-dni="<?php print($row["dni"])?>">Eliminar</button>
 
                                     <!--<form method="get" action="./eliminaEmpleado.php">
                                         <input type="hidden" name="dni" value='<?php print($row["dni"])?>'>
