@@ -28,14 +28,16 @@ if(isset($_SESSION['username'])){
             <form class="container border pt-5 pb-5 " action="/control.php" method="POST">
                 <?php
                     if (array_key_exists('login_error',$_GET)){ ?>
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
                         Usuario o contraseña incorrectos.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php } ?>
                 <?php
                     if (array_key_exists('session_expired',$_GET)){ ?>
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
                         Tu sesión ha caducado.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php } ?>
                 <div class="mb-3">
