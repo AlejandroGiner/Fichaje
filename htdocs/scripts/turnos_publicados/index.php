@@ -16,13 +16,21 @@
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
     ?>
 
-    <button class='btn btn-lg btn-primary' data-bs-toggle='modal' data-bs-target='#nuevoTurnoPublicadoModal'>Publicar turnos</button>
+    <button class='btn btn-lg btn-primary' data-bs-toggle='modal' data-bs-target='#nuevoTurnoPublicado_1'>Publicar turnos</button>
 
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
     $conn = connect();
     $query = "select * from turno_publicado_completo";
     $result = $conn->query($query);
+
+    $turnos_query = "select * from turno";
+    $turnos_result = $conn->query($turnos_query);
+    $turnos = $turnos_result->fetch_all(MYSQLI_BOTH);
+
+    $deptos_query = "select * from departamento";
+    $deptos_result = $conn->query($deptos_query);
+    $deptos = $deptos_result->fetch_all(MYSQLI_BOTH);
 
     ?>
     <div class="table-responsive">
@@ -39,14 +47,51 @@
             </thead>
 
             <tbody>
-                <?php
+            <form method="get" action="./grabaEmpleado.php">
+                <tr>
+                    <td>
+                        <select class="form-select" name="turno" id="turno">
+                            <option value="none" selected disabled hidden></option>
+                            <?php
+                            foreach($turnos as &$turno){?>
+                                <option value=""> <?php print($turno['nombre']); ?></option>
+                            <?php } ?>
+                    </td>
+                    <td>
+                        <select class="form-select" name="departamento" id="departamento">
+                            <option value="none" selected disabled hidden></option>
+                            <?php
+                            foreach($deptos as &$depto){?>
+                                <option value=""> <?php print($depto['nombre']); ?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-select" name="categoria" id="categoria">
+                            <option value="none" selected disabled hidden></option>
+                        </select>
+                    </td>
+                    <td>
+                        Fecha
+                    </td>
+                    <td>
+                        Número
+                    </td>
+                    <td>
+                        Añadir
+                    </td>
+                </tr>
+            </form>
 
+
+
+                <?php
                 while($row = $result->fetch_array()){
                     print("<tr><td>".$row["turno"]."</td>");
                     print("<td>".$row["departamento"]."</td>");
                     print("<td>".$row["categoria"]."</td>");
                     print("<td>".$row["fecha"]."</td>");
-                    print('<td>'.(array_key_exists('empleado',$row)?$row['empleado']:'Sin asignar').'</td>');
+                    print('<td>'.($row['empleado']!=''?$row['empleado']:'Sin asignar').'</td>');
                 }
                 
                 ?>
@@ -55,58 +100,12 @@
 
         </table>
 
+        <?php /*include('publicar_turnos.php'); */?>
 
-        <!-- MODAL nuevoTurnoPublicado -->
-        
-        <div class="modal modal-lg fade" id="nuevoTurnoPublicadoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5">Publicar turnos</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="grabaTurnoPublicado.php">
-                        <div class="modal-body">
-                            <div class="row mb-3">
-                                <label for="turno" class="form-label">Turno</label>
-                                <select class="form-select" name="turno" id="turno">
-                                <?php
-                                $turnos_query = "select * from turno";
-                                $turnos_result = $conn->query($turnos_query);
-                                while($row = $turnos_result->fetch_array()){ ?>
-                                    <option value="<?php print($row['id_turno']) ?>"><?php print($row['nombre']) ?></option> <?php
-                                }
-                                ?>
-                                </select>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="departamento" class="form-label">Departamento</label>
-                                <input class="form-control" type="date" name="departamento" id="departamento" placeholder="">
-                            </div>
-                            <div class="row mb-3">
-                                <label for="categoria" class="form-label">Categoría</label>
-                                <input class="form-control" type="text" name="categoria" id="categoria" placeholder="">
-                            </div>
-                            <div class="row mb-3">
-                                <label for="fecha" class="form-label">Fecha</label>
-                                <input class="form-control" type="text" name="fecha" id="fecha" placeholder="">
-                            </div>
-                            <div class="row mb-3">
-                                <label for="n_turnos" class="form-label">Número de turnos</label>
-                                <input class="form-control" type="text" name="n_turnos" id="n_turnos" placeholder="">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src='/js/turnosPublicados.js'></script>
 
 </body>
 </html>
