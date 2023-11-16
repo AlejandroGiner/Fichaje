@@ -9,7 +9,7 @@
         $update = "UPDATE turno_publicado SET id_empleado=? WHERE id_turno_publicado=?";
 
         $stmt = $conn->prepare($update);
-        $stmt->bind_param('ii',$_REQUEST['id_empleado'],$_REQUEST['id_turno_publicado']);
+        $stmt->bind_param('si',$_REQUEST['empleado'],$_REQUEST['id_turno_publicado']);
         $stmt->execute();
         $stmt->close();
         $conn->close();

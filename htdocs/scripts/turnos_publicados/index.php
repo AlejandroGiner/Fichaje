@@ -57,7 +57,8 @@
                     print('<td>'.($row['empleado']!=''?$row['empleado']:'Sin asignar').'</td>'); ?>
                     <td>
                         <button class="btn btn-lg btn-primary btn-modificar-modal" data-bs-toggle='modal' 
-                        data-bs-target='#modalModificarTurno' data-id-categoria=<?php print($row['categoria']); ?>>Modificar</button>
+                        data-bs-target='#modalModificarTurno' data-id-categoria='<?php print($row['id_categoria']); ?>'
+                        data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'>Modificar</button>
                         <button class="btn btn-lg btn-danger">Eliminar</button>
                     </td>
                 <?php }
@@ -141,12 +142,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="form_modificar_turnos.php" method="post">
+                    <input type="hidden" name="id_turno_publicado" id = 'id_turno_publicado'>
                     <div class="modal-body">
-                        
+                        <label for="empleado">Empleado</label>
+                        <select class='form-select' name="empleado" id="empleado">
+                            <option value="none" selected disabled hidden></option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type='submit' class="btn btn-primary">Publicar</button>
+                        <button type='submit' class="btn btn-primary">Modificar</button>
                     </div>
                 </form>
             </div>
