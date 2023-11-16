@@ -14,7 +14,7 @@ $(document).ready(function(){
           data: {depto_id:depto_id}, //variables o parametros a enviar, formato => nombre_de_variable:contenido
           dataType: 'html', //tipo de datos que esperamos de regreso
           type: 'POST', //mandar variables como post o get
-          url: 'get_categorias.php' //url que recibe las variables
+          url: '/scripts/turnos_publicados/get_categorias.php' //url que recibe las variables
         }).done(function(data){ //metodo que se ejecuta cuando ajax ha completado su ejecucion             
           //alert('el pgm get_discos.php nos devuelve los discos asociados al grupo seleccionado y con ello rehacemos el contenido del elemento discos de tipo select'+data);
           /* alert(data); */
@@ -30,3 +30,7 @@ $(document).ready(function(){
     });
 
   });
+
+$('#modalPublicarTurnos').on('hidden.bs.modal', function () {
+  $(this).find('form').trigger('reset');
+})

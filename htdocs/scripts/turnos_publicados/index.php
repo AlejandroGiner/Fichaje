@@ -16,7 +16,7 @@
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
     ?>
 
-    <button class='btn btn-lg btn-primary' data-bs-toggle='modal' data-bs-target='#nuevoTurnoPublicado_1'>Publicar turnos</button>
+    <button class='btn btn-lg btn-primary' data-bs-toggle='modal' data-bs-target='#modalPublicarTurnos'>Publicar turnos</button>
 
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
@@ -47,44 +47,6 @@
             </thead>
 
             <tbody>
-            <form method="get" action="./grabaEmpleado.php">
-                <tr>
-                    <td>
-                        <select class="form-select" name="turno" id="turno">
-                            <option value="none" selected disabled hidden></option>
-                            <?php
-                            foreach($turnos as &$turno){?>
-                                <option value=""> <?php print($turno['nombre']); ?></option>
-                            <?php } ?>
-                    </td>
-                    <td>
-                        <select class="form-select" name="departamento" id="departamento">
-                            <option value="none" selected disabled hidden></option>
-                            <?php
-                            foreach($deptos as &$depto){?>
-                                <option value=""> <?php print($depto['nombre']); ?></option>
-                            <?php } ?>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-select" name="categoria" id="categoria">
-                            <option value="none" selected disabled hidden></option>
-                        </select>
-                    </td>
-                    <td>
-                        Fecha
-                    </td>
-                    <td>
-                        Número
-                    </td>
-                    <td>
-                        Añadir
-                    </td>
-                </tr>
-            </form>
-
-
-
                 <?php
                 while($row = $result->fetch_array()){
                     print("<tr><td>".$row["turno"]."</td>");
@@ -100,11 +62,72 @@
 
         </table>
 
+        
         <?php /*include('publicar_turnos.php'); */?>
-
+        
+    </div>
+    
+    <!-- Modal Publicar Turnos -->
+    <div class="modal modal-lg fade" id="modalPublicarTurnos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Publicar turnos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="form_publicar_turnos.php" method="post">
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <label for="fecha_inicio" class="form-label">Fecha inicial</label>
+                            <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio">
+                        </div>
+                        <div class="row mb-3">
+                            <label for="fecha_fin" class="form-label">Fecha final</label>
+                            <input class="form-control" type="date" name="fecha_fin" id="fecha_fin">
+                        </div>
+                        <div class="row mb-3">
+                            <label for="turno">Turno</label>
+                            <select class='form-select' name="turno" id="turno">
+                                <option value="none" selected disabled hidden></option>
+                                <?php
+                        foreach($turnos as &$turno){?>
+                            <option value="<?php print($turno['id_turno']); ?>"> <?php print($turno['nombre']); ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="departamento">Departamento</label>
+                            <select class='form-select' name="departamento" id="departamento">
+                                <option value="none" selected disabled hidden></option>
+                                <?php
+                        foreach($deptos as &$depto){?>
+                            <option value="<?php print($depto['id_departamento']); ?>"> <?php print($depto['nombre']); ?></option>
+                            <?php } ?>
+                            </select>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="categoria">Categoría</label>
+                            <select class='form-select' name="categoria" id="categoria">
+                                <option value="none" selected disabled hidden></option>
+                                <option value="none" disabled>Elige un departamento primero</option>
+                            </select>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="cantidad">Cantidad</label>
+                            <input class='form-control' type="number" name="cantidad" id="cantidad">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type='submit' class="btn btn-primary">Publicar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src='/js/turnosPublicados.js'></script>
 
 </body>
