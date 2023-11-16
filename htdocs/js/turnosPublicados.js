@@ -34,8 +34,15 @@ $(document).ready(function(){
     });
 
     $('.btn-modificar-modal').click(function() {
-      var id_turno_publicado = this.attr('data-id-turno-publicado');
-      console.log(id_turno_publicado);
+      var id_categoria = $(this).attr('data-id-categoria');
+      $.ajax({
+        data: {id_categoria:id_categoria},
+        dataType: 'html',
+        type: 'POST',
+        url: '/scripts/turnos_publicados/get_empleados.php'
+      }).done(function(data){
+        
+      })
       //$('#modalModificarTurno');
     });
 

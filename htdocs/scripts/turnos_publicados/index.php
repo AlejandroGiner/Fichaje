@@ -57,7 +57,7 @@
                     print('<td>'.($row['empleado']!=''?$row['empleado']:'Sin asignar').'</td>'); ?>
                     <td>
                         <button class="btn btn-lg btn-primary btn-modificar-modal" data-bs-toggle='modal' 
-                        data-bs-target='#modalModificarTurno' data-id-turno-publicado=<?php print($row['id_turno_publicado']); ?>>Modificar</button>
+                        data-bs-target='#modalModificarTurno' data-id-categoria=<?php print($row['categoria']); ?>>Modificar</button>
                         <button class="btn btn-lg btn-danger">Eliminar</button>
                     </td>
                 <?php }
