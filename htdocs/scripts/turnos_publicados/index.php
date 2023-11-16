@@ -16,8 +16,6 @@
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
     ?>
 
-    <button class='btn btn-lg btn-primary' data-bs-toggle='modal' data-bs-target='#modalPublicarTurnos'>Publicar turnos</button>
-
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
     $conn = connect();
@@ -43,6 +41,9 @@
                     <th>Categoría</th>
                     <th>Fecha</th>
                     <th>Empleado</th>
+                    <th>
+                        <button class='btn btn-lg btn-primary' data-bs-toggle='modal' data-bs-target='#modalPublicarTurnos'>Publicar turnos</button>
+                    </th>
                 </tr>
             </thead>
 
@@ -52,9 +53,14 @@
                     print("<tr><td>".$row["turno"]."</td>");
                     print("<td>".$row["departamento"]."</td>");
                     print("<td>".$row["categoria"]."</td>");
-                    print("<td>".$row["fecha"]."</td>");
-                    print('<td>'.($row['empleado']!=''?$row['empleado']:'Sin asignar').'</td>');
-                }
+                    print('<td>'.date_format(date_create($row['fecha']),'d/m/Y').'</td>');
+                    print('<td>'.($row['empleado']!=''?$row['empleado']:'Sin asignar').'</td>'); ?>
+                    <td>
+                        <button class="btn btn-lg btn-primary btn-modificar-modal" data-bs-toggle='modal' 
+                        data-bs-target='#modalModificarTurno' data-id-turno-publicado=<?php print($row['id_turno_publicado']); ?>>Modificar</button>
+                        <button class="btn btn-lg btn-danger">Eliminar</button>
+                    </td>
+                <?php }
                 
                 ?>
                 </tr>
@@ -116,6 +122,27 @@
                             <label for="cantidad">Cantidad</label>
                             <input class='form-control' type="number" name="cantidad" id="cantidad">
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type='submit' class="btn btn-primary">Publicar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Modificar turno -->
+    <div class="modal modal-lg fade" id="modalModificarTurno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Modificar turno</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="form_modificar_turnos.php" method="post">
+                    <div class="modal-body">
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

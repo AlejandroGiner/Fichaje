@@ -29,8 +29,14 @@ $(document).ready(function(){
       }     
     });
 
-  });
+    $('.modal').on('hidden.bs.modal', function () {
+      $(this).find('form').trigger('reset');
+    });
 
-$('#modalPublicarTurnos').on('hidden.bs.modal', function () {
-  $(this).find('form').trigger('reset');
-})
+    $('.btn-modificar-modal').click(function() {
+      var id_turno_publicado = this.attr('data-id-turno-publicado');
+      console.log(id_turno_publicado);
+      //$('#modalModificarTurno');
+    });
+
+  });
