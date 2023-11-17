@@ -13,7 +13,7 @@ $stmt = $conn->prepare($query);
 $stmt->bind_param('s',$_POST['username']);
 $stmt->execute();
 if($stmt->num_rows>0){
-    header('Location: /register?user_exists');
+    header('Location: ./?user_exists');
 }
 
 
@@ -25,5 +25,5 @@ $stmt->execute();
 $stmt->close();
 $conn->close();
 
-header('Location: /register');
+header('Location: ./');
 ?>

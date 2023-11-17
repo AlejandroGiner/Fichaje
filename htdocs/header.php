@@ -44,7 +44,7 @@
             <li><a class="dropdown-item <?php if(str_contains($_SERVER['PHP_SELF'],'categorias/')){print('active');}?>" href="/scripts/categorias">
             <i class="bi-diagram-2-fill"></i> Categorías
             </a></li>
-            <li><a class="dropdown-item <?php if(str_contains($_SERVER['PHP_SELF'],'register/')){print('active');}?>" href="/register">
+            <li><a class="dropdown-item <?php if(str_contains($_SERVER['PHP_SELF'],'register/')){print('active');}?>" href="/scripts/register">
               <<i class="bi-person-fill-add"></i> Registrar usuario
             </a></li>
           </ul>
