@@ -12,6 +12,7 @@ $query = 'SELECT username FROM usuario_web WHERE username=?';
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s',$_POST['username']);
 $stmt->execute();
+$stmt->store_result();
 if($stmt->num_rows>0){
     header('Location: ./?user_exists');
     exit();
