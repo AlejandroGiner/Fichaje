@@ -21,12 +21,12 @@ $stmt->close();
 
 $insert = "INSERT INTO usuario_web (username, password) VALUES (?,?)";
 $stmt = $conn->prepare($insert);
-if($stmt){
+$stmt->bind_param('ss',$_POST["username"],$password_hash);
 
-    $stmt->bind_param('ss',$_POST["username"],password_hash($_POST['passwd'],PASSWORD_BCRYPT));
-    $stmt->execute();
-    $stmt->close();
-}
+$password_hash = password_hash($_POST['passwd'],PASSWORD_BCRYPT);
+
+$stmt->execute();
+$stmt->close();
 $conn->close();
 
 header('Location: ./');
