@@ -15,6 +15,7 @@ $stmt->execute();
 if($stmt->num_rows>0){
     header('Location: ./?user_exists');
 }
+$stmt->close();
 
 
 
