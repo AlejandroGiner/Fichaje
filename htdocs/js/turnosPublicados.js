@@ -44,4 +44,8 @@ $(document).ready(function(){
 
   });
 
+  $('.btn-eliminar-modal').click(function(){
+    // poner id turno publicado en modal hidden input
+  });
+
 });
