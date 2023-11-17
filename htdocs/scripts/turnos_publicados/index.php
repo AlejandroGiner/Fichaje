@@ -42,7 +42,7 @@
                     <th>Fecha</th>
                     <th>Empleado</th>
                     <th>
-                        <button class='btn btn-lg btn-primary' data-bs-toggle='modal' data-bs-target='#modalPublicarTurnos'>Publicar turnos</button>
+                        <button class='btn btn-lg btn-primary bi bi-calendar2-plus-fill' data-bs-toggle='modal' data-bs-target='#modalPublicarTurnos'>Publicar turnos</button>
                     </th>
                 </tr>
             </thead>
@@ -56,10 +56,10 @@
                     print('<td>'.date_format(date_create($row['fecha']),'d/m/Y').'</td>');
                     print('<td>'.($row['empleado']!=''?$row['empleado']:'Sin asignar').'</td>'); ?>
                     <td>
-                        <button class="btn btn-lg btn-primary btn-modificar-modal" data-bs-toggle='modal' 
+                        <button class="btn btn-lg btn-primary btn-modificar-modal bi bi-pencil-square" data-bs-toggle='modal' 
                         data-bs-target='#modalModificarTurno' data-id-categoria='<?php print($row['id_categoria']); ?>'
                         data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'>Modificar</button>
-                        <button class="btn btn-lg btn-danger">Eliminar</button>
+                        <button class="btn btn-lg btn-danger bi bi-trash">Eliminar</button>
                     </td>
                 <?php }
                 
