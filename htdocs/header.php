@@ -28,7 +28,7 @@
         </a>
         */ ?>
         <div class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="#" class="nav-link dropdown-toggle px-5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi-building-fill-gear d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Administración
           </a>
           <ul class="dropdown-menu">
