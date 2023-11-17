@@ -20,9 +20,12 @@ if($stmt->num_rows>0){
 
 $insert = "INSERT INTO usuario_web (username, password) VALUES (?,?)";
 $stmt = $conn->prepare($insert);
-$stmt->bind_param('ss',$_POST["username"],password_hash($_POST['passwd'],PASSWORD_BCRYPT));
-$stmt->execute();
-$stmt->close();
+if($stmt){
+
+    $stmt->bind_param('ss',$_POST["username"],password_hash($_POST['passwd'],PASSWORD_BCRYPT));
+    $stmt->execute();
+    $stmt->close();
+}
 $conn->close();
 
 header('Location: ./');
