@@ -87,18 +87,18 @@
                                 print("<td>".$row["categoria"]."</td>");
                                 ?>
                                 <td>
-                                    <nobr><button type="button" class="btn btn-primary bi bi-pencil-square"
+                                    <button style="white-space: nowrap;" type="button" class="btn btn-primary bi bi-pencil-square"
                                     data-bs-toggle="modal" data-bs-target="#modificarEmpleadosModal"
                                     data-bs-dni="<?php print($row["dni"])?>"
                                     data-bs-nombre="<?php print($row["nombre"]) ?>"
                                     data-bs-apellido1="<?php print($row["apellido1"]) ?>"
                                     data-bs-apellido2="<?php print($row["apellido2"]) ?>"
-                                    data-bs-categoria="<?php print($row["id_categoria"]) ?>"> Modificar</button></nobr>
+                                    data-bs-categoria="<?php print($row["id_categoria"]) ?>"> Modificar</button>
                                 </td>
                                 <td>
-                                    <nobr><button type="button" class="btn btn-danger bi bi-trash"
+                                    <button style="white-space: nowrap;" type="button" class="btn btn-danger bi bi-trash"
                                     data-bs-toggle="modal" data-bs-target="#eliminarEmpleadosModal"
-                                    data-bs-dni="<?php print($row["dni"])?>"> Eliminar</button></nobr>
+                                    data-bs-dni="<?php print($row["dni"])?>"> Eliminar</button>
                                 </td>
                                 </tr>
 

@@ -56,13 +56,13 @@
                     print('<td>'.date_format(date_create($row['fecha']),'d/m/Y').'</td>');
                     print('<td>'.($row['empleado']!=''?$row['empleado']:'Sin asignar').'</td>'); ?>
                     <td>
-                        <nobr><button class="btn btn-lg btn-primary btn-modificar-modal bi bi-pencil-square" data-bs-toggle='modal' 
+                        <button style="white-space: nowrap;" class="btn btn-lg btn-primary btn-modificar-modal bi bi-pencil-square" data-bs-toggle='modal' 
                         data-bs-target='#modalModificarTurno' data-id-categoria='<?php print($row['id_categoria']); ?>'
-                        data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'> Modificar</button></nobr>
-                        <nobr><button class="btn btn-lg btn-danger btn-eliminar-modal bi bi-trash" 
+                        data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'> Modificar</button>
+                        <button style="white-space: nowrap;" class="btn btn-lg btn-danger btn-eliminar-modal bi bi-trash" 
                         data-bs-toggle='modal'
                         data-bs-target="#eliminarTurnosModal" 
-                        data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'> Eliminar</button></nobr>
+                        data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'> Eliminar</button>
                     </td>
                 <?php }
                 
