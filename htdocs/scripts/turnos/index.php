@@ -37,7 +37,7 @@
             ?>
             <table class="table table-striped">
             <tr><th>Hora inicio</th><th>Hora fin</th><th>Plus</th></tr>
-            <form method="get" action="/scripts/turno/grabaTurno.php">
+            <form method="get" action="grabaTurno.php">
                 <tr><td><input type="time" name="hora_inicio"></td>
                     <td><input type="time" name="hora_fin"></td>
                     <td><input type="checkbox" class="form-check-input" name="plus"></td>
