@@ -36,7 +36,6 @@ $(document).ready(function(){
       type: 'POST',
       url: '/scripts/turnos_publicados/get_empleados.php'
     }).done(function(data){
-      console.log(data);
       $('#empleado').html(data);
     });
 
@@ -46,6 +45,11 @@ $(document).ready(function(){
 
   $('.btn-eliminar-modal').click(function(){
     // poner id turno publicado en modal hidden input
+    $('#id_turno_publicado_eliminar').val($(this).attr('data-id-turno-publicado'));
+  });
+
+  $(document).ready(function() {
+    $(".toast").toast('show');
   });
 
 });
