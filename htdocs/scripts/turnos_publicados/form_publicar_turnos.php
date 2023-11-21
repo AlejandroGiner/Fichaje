@@ -25,5 +25,5 @@
           
           $conn->close();
 
-        header('Location: ./');
+        header('Location: ./?published_shift');
       ?>

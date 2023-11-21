@@ -59,7 +59,10 @@
                         <button class="btn btn-lg btn-primary btn-modificar-modal bi bi-pencil-square" data-bs-toggle='modal' 
                         data-bs-target='#modalModificarTurno' data-id-categoria='<?php print($row['id_categoria']); ?>'
                         data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'> Modificar</button>
-                        <button class="btn btn-lg btn-danger btn-eliminar-modal bi bi-trash" data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'> Eliminar</button>
+                        <button class="btn btn-lg btn-danger btn-eliminar-modal bi bi-trash" 
+                        data-bs-toggle='modal'
+                        data-bs-target="#eliminarTurnosModal" 
+                        data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'> Eliminar</button>
                     </td>
                 <?php }
                 
@@ -86,16 +89,16 @@
                     <div class="modal-body">
                         <div class="row mb-3">
                             <label for="fecha_inicio" class="form-label">Fecha inicial</label>
-                            <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio">
+                            <input class="form-control" type="date" name="fecha_inicio" id="fecha_inicio" required>
                         </div>
                         <div class="row mb-3">
                             <label for="fecha_fin" class="form-label">Fecha final</label>
-                            <input class="form-control" type="date" name="fecha_fin" id="fecha_fin">
+                            <input class="form-control" type="date" name="fecha_fin" id="fecha_fin" required>
                         </div>
                         <div class="row mb-3">
                             <label for="turno">Turno</label>
-                            <select class='form-select' name="turno" id="turno">
-                                <option value="none" selected disabled hidden></option>
+                            <select class='form-select' name="turno" id="turno" required>
+                                <option value="" selected disabled hidden></option>
                                 <?php
                         foreach($turnos as &$turno){?>
                             <option value="<?php print($turno['id_turno']); ?>"> <?php print($turno['nombre']); ?></option>
@@ -104,8 +107,8 @@
                         </div>
                         <div class="row mb-3">
                             <label for="departamento">Departamento</label>
-                            <select class='form-select' name="departamento" id="departamento">
-                                <option value="none" selected disabled hidden></option>
+                            <select class='form-select' name="departamento" id="departamento" required>
+                                <option value="" selected disabled hidden></option>
                                 <?php
                         foreach($deptos as &$depto){?>
                             <option value="<?php print($depto['id_departamento']); ?>"> <?php print($depto['nombre']); ?></option>
@@ -114,14 +117,13 @@
                         </div>
                         <div class="row mb-3">
                             <label for="categoria">Categoría</label>
-                            <select class='form-select' name="categoria" id="categoria">
-                                <option value="none" selected disabled hidden></option>
-                                <option value="none" disabled>Elige un departamento primero</option>
+                            <select class='form-select' name="categoria" id="categoria" required>
+                                <option value="" selected disabled hidden>Elige un departamento primero</option>
                             </select>
                         </div>
                         <div class="row mb-3">
                             <label for="cantidad">Cantidad</label>
-                            <input class='form-control' type="number" name="cantidad" id="cantidad">
+                            <input class='form-control' type="number" name="cantidad" id="cantidad" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -160,27 +162,51 @@
 
     <!-- MODAL Eliminar turno publicado -->
     <div class="modal fade" id="eliminarTurnosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5">Eliminar turno publicado</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <form action="eliminaTurnoPublicado.php">
-                                            <div class="modal-body">
-                                                <p>¿Seguro?</p>
-                                                <input class="form-control" type="hidden" name="dni" id="eliminardni">
-                                            </div>
-                                        
-                                        
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-danger">Sí</button>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Eliminar turno publicado</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="eliminaTurnoPublicado.php">
+                    <div class="modal-body">
+                        <p>¿Seguro?</p>
+                        <input class="form-control" type="hidden" name="id_turno_publicado_eliminar" id="id_turno_publicado_eliminar">
+                    </div>
+                
+                
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Sí</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <?php
+    if (array_key_exists('published_shift',$_GET)){ ?>
+
+    <!-- Toast turnos publicados -->
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+  <!-- Position it: -->
+  <!-- - `.toast-container` for spacing between toasts -->
+  <!-- - `top-0` & `end-0` to position the toasts in the upper right corner -->
+  <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
+  <div class="toast-container top-0 end-0 p-3">
+
+<!-- Then put toasts within -->
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body">
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        Turnos publicados con éxito.
+  </div>
+</div>
+
+</div>
+</div>
+
+    <?php } ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

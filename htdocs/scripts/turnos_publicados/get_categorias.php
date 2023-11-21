@@ -11,7 +11,7 @@ mysqli_close($conn);
 
 ?>
 
-<option value="none" selected disabled hidden></option>
+<option value="" selected disabled hidden></option>
 <?php foreach($rows as &$row){ ?>
     <option value='<?php print($row['id_categoria']); ?>'><?php print($row['nombre']); ?></option>
 <?php } ?>
