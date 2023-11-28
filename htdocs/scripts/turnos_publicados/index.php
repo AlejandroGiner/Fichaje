@@ -19,8 +19,17 @@
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
     $conn = connect();
-    $query = "select * from turno_publicado_completo";
-    $result = $conn->query($query);
+    #$query = "select * from turno_publicado_completo";
+    $query = "select * from turno_publicado_completo LIMIT ? OFFSET ?";
+    $stmt = $conn->prepare($query);
+    $page = intval($_GET['p']);
+    $pagesize = intval($_GET['size']);
+    $offset = $page * $pagesize;
+
+    $stmt->bind_param('ii',$pagesize,$offset);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
 
     $turnos_query = "select * from turno";
     $turnos_result = $conn->query($turnos_query);
@@ -62,7 +71,12 @@
                         <button style="white-space: nowrap;" class="btn btn-lg btn-danger btn-eliminar-modal bi bi-trash" 
                         data-bs-toggle='modal'
                         data-bs-target="#eliminarTurnosModal" 
-                        data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'> Eliminar</button>
+                        data-id-turno-publicado='<?php print($row['id_turno_publicado']); ?>'
+                        data-fecha-eliminar='<?php print($row['fecha']); ?>'
+                        data-turno-eliminar='<?php print($row['turno']); ?>'
+                        data-departamento-eliminar='<?php print($row['departamento']); ?>'
+                        data-categoria-eliminar='<?php print($row['categoria']); ?>'
+                        data-empleado-eliminar='<?php print($row['empleado']); ?>'> Eliminar</button>
                     </td>
                 <?php }
                 
@@ -161,7 +175,7 @@
     </div>
 
     <!-- MODAL Eliminar turno publicado -->
-    <div class="modal fade" id="eliminarTurnosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal modal-lg fade" id="eliminarTurnosModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -170,14 +184,23 @@
                 </div>
                 <form action="eliminaTurnoPublicado.php">
                     <div class="modal-body">
-                        <p>¿Seguro?</p>
+                        <label for="fecha_eliminar" class="form-label">Fecha</label>
+                        <input class='form-control' type="date" name="fecha_eliminar" id="fecha_eliminar" readonly>
+                        <label for="turno_eliminar" class="form-label">Turno</label>
+                        <input class='form-control' type="text" name="turno_eliminar" id="turno_eliminar" readonly>
+                        <label for="departamento_eliminar" class="form-label">Departamento</label>
+                        <input class='form-control' type="text" name="departamento_eliminar" id="departamento_eliminar" readonly>
+                        <label for="categoria_eliminar" class="form-label">Categoría</label>
+                        <input class='form-control' type="text" name="categoria_eliminar" id="categoria_eliminar" readonly>
+                        <label for="empleado_eliminar" class="form-label">Empleado</label>
+                        <input class='form-control' type="text" name="empleado_eliminar" id="empleado_eliminar" readonly>
                         <input class="form-control" type="hidden" name="id_turno_publicado_eliminar" id="id_turno_publicado_eliminar">
                     </div>
                 
                 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">Sí</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>
