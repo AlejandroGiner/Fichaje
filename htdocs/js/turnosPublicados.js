@@ -46,6 +46,11 @@ $(document).ready(function(){
   $('.btn-eliminar-modal').click(function(){
     // poner id turno publicado en modal hidden input
     $('#id_turno_publicado_eliminar').val($(this).attr('data-id-turno-publicado'));
+    $('#fecha_eliminar').val($(this).attr('data-fecha-eliminar'));
+    $('#turno_eliminar').val($(this).attr('data-turno-eliminar'));
+    $('#departamento_eliminar').val($(this).attr('data-departamento-eliminar'));
+    $('#categoria_eliminar').val($(this).attr('data-categoria-eliminar'));
+    $('#empleado_eliminar').val($(this).attr('data-empleado-eliminar'));
   });
 
   $(document).ready(function() {
