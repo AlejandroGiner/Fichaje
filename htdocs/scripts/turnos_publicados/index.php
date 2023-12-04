@@ -22,9 +22,8 @@
     #$query = "select * from turno_publicado_completo";
     $query = "select * from turno_publicado_completo LIMIT ? OFFSET ?";
     $stmt = $conn->prepare($query);
-    $page = intval($_GET['p']);
-    $pagesize = intval($_GET['size']);
-    $offset = $page * $pagesize;
+    include($_SERVER['DOCUMENT_ROOT'].'/scripts/pagination.php');
+    $offset = ($page-1) * $pagesize;
 
     $stmt->bind_param('ii',$pagesize,$offset);
     $stmt->execute();
@@ -86,8 +85,22 @@
 
         </table>
 
-        
-        <?php /*include('publicar_turnos.php'); */?>
+            <nav>
+                <ul class="pagination pagination-lg d-flex justify-content-center">
+                    <li class="page-item"><a class="page-link" href="#"><i class="bi bi-arrow-left"></i></a></li>
+                    <?php
+                        for($i=$page-2;$i <= $page+2;$i++){
+                            ?>
+                                <li class="page-item"><a class="page-link" href=".?p=<?php print($i) ?>"><?php print($i) ?></a></li>
+                            <?php
+                        }
+                    ?>
+                    <li class="page-item"><a class="page-link" href=".?p=1">1</a></li>
+                    <li class="page-item"><a class="page-link" href=".?p=2">2</a></li>
+                    <li class="page-item"><a class="page-link" href=".?p=3">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="bi bi-arrow-right"></i></a></li>
+                </ul>
+            </nav>
         
     </div>
     
