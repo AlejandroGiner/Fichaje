@@ -49,6 +49,7 @@
                     <th>Categoría</th>
                     <th>Fecha</th>
                     <th>Empleado</th>
+                    <th>Precio</th>
                     <th>
                         <nobr><button class='btn btn-lg btn-primary bi bi-calendar2-plus-fill' data-bs-toggle='modal' data-bs-target='#modalPublicarTurnos'> Publicar turnos</button></nobr>
                     </th>
@@ -62,7 +63,9 @@
                     print("<td>".$row["departamento"]."</td>");
                     print("<td>".$row["categoria"]."</td>");
                     print('<td>'.date_format(date_create($row['fecha']),'d/m/Y').'</td>');
-                    print('<td>'.($row['empleado']!=''?$row['empleado']:'Sin asignar').'</td>'); ?>
+                    print('<td>'.($row['empleado']!=''?$row['empleado']:'Sin asignar').'</td>');
+                    print('<td>'.$row['precio'].'</td>');
+                    ?>
                     <td>
                         <button style="white-space: nowrap;" class="btn btn-lg btn-primary btn-modificar-modal bi bi-pencil-square" data-bs-toggle='modal' 
                         data-bs-target='#modalModificarTurno' data-id-categoria='<?php print($row['id_categoria']); ?>'
@@ -89,15 +92,12 @@
                 <ul class="pagination pagination-lg d-flex justify-content-center">
                     <li class="page-item"><a class="page-link" href="#"><i class="bi bi-arrow-left"></i></a></li>
                     <?php
-                        for($i=$page-2;$i <= $page+2;$i++){
+                        for($i=max(1,$page-2);$i <= $page+2;$i++){
                             ?>
                                 <li class="page-item"><a class="page-link" href=".?p=<?php print($i) ?>"><?php print($i) ?></a></li>
                             <?php
                         }
                     ?>
-                    <li class="page-item"><a class="page-link" href=".?p=1">1</a></li>
-                    <li class="page-item"><a class="page-link" href=".?p=2">2</a></li>
-                    <li class="page-item"><a class="page-link" href=".?p=3">3</a></li>
                     <li class="page-item"><a class="page-link" href="#"><i class="bi bi-arrow-right"></i></a></li>
                 </ul>
             </nav>
