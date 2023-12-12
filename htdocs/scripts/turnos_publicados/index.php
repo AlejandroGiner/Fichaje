@@ -90,15 +90,15 @@
 
             <nav>
                 <ul class="pagination pagination-lg d-flex justify-content-center">
-                    <li class="page-item"><a class="page-link" href="#"><i class="bi bi-arrow-left"></i></a></li>
+                    <li class="page-item <?php if(1==$page) print('disabled') ?>"><a class="page-link"href=".?p=<?php print($page-1) ?>"><i class="bi bi-arrow-left"></i></a></li>
                     <?php
                         for($i=max(1,$page-2);$i <= $page+2;$i++){
                             ?>
-                                <li class="page-item"><a class="page-link" href=".?p=<?php print($i) ?>"><?php print($i) ?></a></li>
+                                <li class="page-item <?php if($i==$page) print('active') ?>"><a class="page-link" href=".?p=<?php print($i) ?>"><?php print($i) ?></a></li>
                             <?php
                         }
                     ?>
-                    <li class="page-item"><a class="page-link" href="#"><i class="bi bi-arrow-right"></i></a></li>
+                    <li class="page-item"><a class="page-link" href=".?p=<?php print($page+1) ?>"><i class="bi bi-arrow-right"></i></a></li>
                 </ul>
             </nav>
         
