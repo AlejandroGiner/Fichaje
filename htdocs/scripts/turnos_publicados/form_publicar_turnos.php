@@ -15,9 +15,10 @@
         $period = new DatePeriod($fecha_inicio, $interval, $fecha_fin);
 
         foreach ($period as $dt){
+            $fecha = $dt->format('Y-m-d');
             for($i = 0; $i < $_REQUEST['cantidad']; $i++){
                 $stmt = $conn->prepare($insert);
-                $stmt->bind_param('iis',$_REQUEST["turno"],$_REQUEST["categoria"],$dt->format('Y-m-d'));
+                $stmt->bind_param('iis',$_REQUEST["turno"],$_REQUEST["categoria"],$fecha);
                 $stmt->execute();
                 $stmt->close();
             }
