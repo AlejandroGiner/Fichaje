@@ -15,7 +15,7 @@
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
     ?>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="panel panel-primary">
             <div class="panel-heading text-center">
                 <h2>Empleados</h2>
@@ -44,7 +44,7 @@
                                 <th>Apellido 1</th>
                                 <th>Apellido 2</th>
                                 <th>Departamento</th>
-                                <th>Categoría</th>
+                                <th class="col-2">Categoría</th>
                             </tr>
                             <form method="get" action="./grabaEmpleado.php">
                                 <tr>
@@ -52,27 +52,16 @@
                                     <td><input class="form-control" type="text" name="nombre"></td>
                                     <td><input class="form-control" type="text" name="apellido1"></td>
                                     <td><input class="form-control" type="text" name="apellido2"></td>
-                                    <td><input class="form-control" type="text" name="departamento" readonly></td>
+                                    <td><select class="form-select" name="departamento" id="departamento">
+                                    <option value="" selected disabled hidden></option>
+                                    <?php
+                                        foreach($deptos as &$depto){?>
+                                            <option value="<?php print($depto['id_departamento']); ?>"> <?php print($depto['nombre']); ?></option>
+                                            <?php } ?>
+                                    ?>
+                                    </td>
                                     <td><select class="form-select" name="categoria" id="categoria1">
-                                        <option value="none" selected disabled hidden></option> 
-                                        <?php
-                                            foreach($deptos as &$depto){
-
-                                                $cats = $conn->query("select * from categoria where id_departamento=".$depto['id_departamento']);
-                                                ?>
-                                                <optgroup label="Departamento: <?php print($depto["nombre"])?>">
-                                                    
-                                                <?php
-                                                    while($categoria = $cats->fetch_array()){
-                                                        ?>
-                                                        <option data-bs-departamento="<?php print($depto['nombre'])?>" value="<?php print($categoria['id_categoria']) ?>"><?php print($categoria['nombre']) ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </optgroup>
-                                            <?php
-                                            }
-                                        ?>
+                                        <option value="" selected disabled hidden>Elige un departamento primero</option>
                                     </select></td>
                                     <td><button type="submit" class="btn btn-info bi bi-plus-lg"> Añadir</button></td>
                                 </tr>
@@ -206,7 +195,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src='/js/modalModificarEmpleado.js'></script>
+    <script src='/js/empleados.js'></script>
     
 
 </body>
