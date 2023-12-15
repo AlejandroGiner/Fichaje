@@ -1,6 +1,5 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
-$conn = connect();
 
 $id_departamento = filter_input(INPUT_POST,'depto_id');
 

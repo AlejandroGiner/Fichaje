@@ -19,18 +19,11 @@
 
             <?php
                 require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
-                $obj_conexion = connect();
-
-                if(!$obj_conexion)
-        {
-          echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
-        }
+                $conn = connect();
       
-        else
-        {
 
                 $var_consulta= "select * from turno";
-                $var_resultado = $obj_conexion->query($var_consulta);
+                $var_resultado = $conn->query($var_consulta);
 
                 if($var_resultado->num_rows>0)
                 {
@@ -115,8 +108,7 @@
         </div>
         <?php
             $var_resultado->close();
-            $obj_conexion->close();
-        }
+            $conn->close();
         ?>
             </table>
         </div>

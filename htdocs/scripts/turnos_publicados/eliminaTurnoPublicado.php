@@ -13,11 +13,6 @@
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
 
         include_once($_SERVER['DOCUMENT_ROOT']."/scripts/conn.php");
-        $conn = connect();
-        if(!$conn)
-        {
-          echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
-        }
 
         $delete = "DELETE FROM turno_publicado WHERE id_turno_publicado="."'".$_REQUEST["id_turno_publicado_eliminar"]."'";
         $stmt = $conn->prepare($delete);

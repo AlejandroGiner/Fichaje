@@ -2,8 +2,6 @@
 include ($_SERVER['DOCUMENT_ROOT']."/seguridad.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/scripts/conn.php");
 
-$conn = connect();
-
 $filename = 'fichaje.csv';
 #12345678A;2023-11-21;06:05:00;13:55:00
 #22222222B;2023-11-21;06:00:00;14:05:00

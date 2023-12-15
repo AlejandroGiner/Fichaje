@@ -2,11 +2,6 @@
 
 //vemos si el usuario y contraseña es válido
 include_once($_SERVER['DOCUMENT_ROOT']."/scripts/conn.php");
-$conn = connect();
-if(!$conn)
-{
-    print("<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>");
-}
 
 $query = 'SELECT username FROM usuario_web WHERE username=?';
 $stmt = $conn->prepare($query);

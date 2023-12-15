@@ -12,11 +12,6 @@
         include("../../header.php");
 
         include_once("../conn.php");
-        $conn = connect();
-        if(!$conn)
-        {
-          echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
-        }
 
         $delete = "DELETE FROM turno WHERE id_turno="."'".$_REQUEST["id_turno"]."'";
         $stmt = $conn->prepare($delete);

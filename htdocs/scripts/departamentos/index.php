@@ -22,11 +22,7 @@
 
             <?php
                 require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
-                $conn = connect();
-                if(!$conn){
-                    print("<h3>Fallo de conexión SQL.</h3><hr><br>");
-                }
-                else{
+
                     $query = "select * from departamento";
                     $result = $conn->query($query);
                         ?>
@@ -67,7 +63,6 @@
                             }
                         $result->close();
                         $conn->close();
-                    }
                     ?>
 
                     <!-- MODAL modificarDepartamento -->

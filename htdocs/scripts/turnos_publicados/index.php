@@ -18,8 +18,7 @@
 
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
-    $conn = connect();
-    #$query = "select * from turno_publicado_completo";
+
     $query = "select * from turno_publicado_completo LIMIT ? OFFSET ?";
     $stmt = $conn->prepare($query);
     include($_SERVER['DOCUMENT_ROOT'].'/scripts/pagination.php');

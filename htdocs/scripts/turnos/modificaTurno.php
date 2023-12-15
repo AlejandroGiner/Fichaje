@@ -10,11 +10,6 @@
   <?php
         include("../../header.php");
         include_once("../conn.php");
-        $conn = connect();
-        if(!$conn)
-        {
-          echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
-        }
 
         $update = "UPDATE turno SET hora_inicio=?, hora_fin=?, plus=? WHERE id_turno=?";
         $stmt = $conn->prepare($update);

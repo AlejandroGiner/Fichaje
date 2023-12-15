@@ -21,11 +21,7 @@
 
             <?php
                 require_once($_SERVER['DOCUMENT_ROOT'].'/scripts/conn.php');
-                $conn = connect();
-                if(!$conn){
-                    print("<h3>Fallo de conexión SQL.</h3><hr><br>");
-                }
-                else{
+
                     $deptos_query = "select * from departamento";
                     $deptos_result = $conn->query($deptos_query);
                     $deptos = $deptos_result->fetch_all(MYSQLI_BOTH);
@@ -102,7 +98,6 @@
                         <?php
                         $result->close();
                         $conn->close();
-                    }
                     ?>
                         </table>
                         </div>

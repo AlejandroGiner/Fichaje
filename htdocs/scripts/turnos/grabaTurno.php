@@ -11,13 +11,9 @@
 
   <?php
         include_once($_SERVER["DOCUMENT_ROOT"]."/scripts/conn.php");
-        $obj_conexion = connect();
-        if(!$obj_conexion)
-        {
-          echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
-        }
+
         $insercion = "INSERT INTO turno (hora_inicio,hora_fin,plus) VALUES (?,?,?)";
-        $stmt = $obj_conexion->prepare($insercion);
+        $stmt = $conn->prepare($insercion);
         if(isset($_REQUEST["plus"])){
             $plus = b'1';
         } else {
@@ -36,7 +32,7 @@
             echo "<td>".($plus ? 'Sí' : 'No')."</td>";
             echo "</table>";
           $stmt->close();
-          $obj_conexion->close();
+          $conn->close();
 
            
       ?>

@@ -11,11 +11,6 @@
   <?php
         include("../../header.php");
         include_once("../conn.php");
-        $conn = connect();
-        if(!$conn)
-        {
-          echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
-        }
 
         $update = "UPDATE departamento SET nombre=?, presupuesto=? WHERE id_departamento=?";
         $stmt = $conn->prepare($update);

@@ -12,3 +12,9 @@ function connect(){
     $sqli->set_charset('utf8');
     return $sqli;
 }
+
+$conn = connect();
+if(!$conn)
+{
+    print("<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>");
+}
