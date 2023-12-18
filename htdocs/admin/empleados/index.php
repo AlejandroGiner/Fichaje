@@ -15,7 +15,7 @@
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
     ?>
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
         <div class="panel panel-primary">
             <div class="panel-heading text-center">
                 <h2>Empleados</h2>

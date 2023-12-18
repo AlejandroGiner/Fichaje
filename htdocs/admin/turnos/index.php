@@ -13,7 +13,7 @@
     <?php
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
     ?>
-    <div class="container">
+    <div class="container mt-5">
         <div class="panel panel-primary">
             <div class="panel-heading text-center"><h2>Turnos</h2></div>
 
