@@ -15,6 +15,7 @@
     <?php
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
     ?>
+    <!--
     <div class="container mt-5">
         <div class="panel panel-primary">
             <div class="panel-heading text-center"><h2>Fichaje</h2></div>
@@ -22,6 +23,8 @@
             <h1>Bienvenido</h1>
         </div>
     </div>
+    -->
+    <img src="/img/bg-<?php print('f') ?>.png" class="img-fluid">
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/darkmode.php'); ?>
 
