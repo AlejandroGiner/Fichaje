@@ -35,9 +35,9 @@
             <li><a class="dropdown-item <?php if(str_contains($_SERVER['PHP_SELF'],'register/')){print('active');}?>" href="/admin/register">
               <i class="bi-person-fill-add"></i> Registrar usuario
             </a></li>
-            <li><a class="dropdown-item" href="/scripts/horas/get_horas.php">
+            <!-- <li><a class="dropdown-item" href="/scripts/horas/get_horas.php">
               <i class="bi-database-fill-gear"></i> Procesar fichajes
-            </a></li>
+            </a></li> -->
           </ul>
         </div>
         <?php } ?>
