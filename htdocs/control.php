@@ -17,11 +17,11 @@ if ($stored_hash!=null && password_verify($_POST['passwd'],$stored_hash)){
     $_SESSION['username']= $_POST["username"];
     $_SESSION['last_login'] = date('Y-n-j H:i:s');
     
-    $data_query = 'SELECT e.id_tipo_empleado, e.nombre FROM usuario_web u JOIN empleado e ON (u.id_empleado=e.dni) WHERE u.username=?';
+    $data_query = 'SELECT e.id_tipo_empleado, e.nombre, e.dni FROM usuario_web u JOIN empleado e ON (u.id_empleado=e.dni) WHERE u.username=?';
     $stmt = $conn->prepare($data_query);
     $stmt->bind_param('s',$_POST['username']);
     $stmt->execute();
-    $stmt->bind_result($_SESSION['tipo_empleado'], $_SESSION['nombre']);
+    $stmt->bind_result($_SESSION['tipo_empleado'], $_SESSION['nombre'], $_SESSION['dni']);
     $stmt->fetch();
     $stmt->close();
     $conn->close();
