@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark ">
   <div class="container-fluid">
     <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none navbar-brand">
-      <i class="bi bi-clock-history px-5" style="font-size: 4rem;"></i>Hola, <?php print($_SESSION['nombre']); ?>
+      <i class="bi bi-clock-history px-5" style="font-size: 4rem;"></i>Hola, <?php print(isset($_SESSION['nombre']) ? $_SESSION['nombre'] : 'invitado'); ?>
     </a>
 
     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,12 +11,12 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
 
-      <?php if($_SESSION['tipo_empleado'] != 3) { ?>
+      <?php if(isset($_SESSION['tipo_empleado']) && $_SESSION['tipo_empleado'] != 3) { ?>
         <a href="/user/mis_turnos" class='nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'mis_turnos')){print('active');}?>'>
           <i class='bi-calendar-week d-block mb-1 text-center d-none d-xl-block' style='font-size: 2rem;'></i>Mis turnos
         </a>
       <?php } ?>
-      <?php if($_SESSION['tipo_empleado'] == 3) { ?>
+      <?php if(isset($_SESSION['tipo_empleado']) && $_SESSION['tipo_empleado'] == 3) { ?>
         <a href="/scripts/turnos_publicados" class='nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'turnos_publicados')){print('active');}?>'>
           <i class='bi-calendar-week d-block mb-1 text-center d-none d-xl-block' style='font-size: 2rem;'></i>Turnos publicados
         </a>
@@ -46,10 +46,11 @@
           </ul>
         </div>
         <?php } ?>
-          
-        <a href="/logout.php" class="nav-link px-5">
-          <i class="bi-door-closed d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Cerrar sesión
-        </a>
+        <?php if(isset($_SESSION['nombre'])) { ?>
+          <a href="/logout.php" class="nav-link px-5">
+            <i class="bi-door-closed d-block mb-1 text-center d-none d-xl-block" style="font-size: 2rem;"></i>Cerrar sesión
+          </a>
+        <?php } ?>
       </div>
     </div>
 
