@@ -22,12 +22,16 @@
     $query = "select * from turno_publicado_completo LIMIT ? OFFSET ?";
     $stmt = $conn->prepare($query);
     include($_SERVER['DOCUMENT_ROOT'].'/scripts/pagination.php');
-    $offset = ($page-1) * $pagesize;
 
     $stmt->bind_param('ii',$pagesize,$offset);
     $stmt->execute();
     $result = $stmt->get_result();
     $stmt->close();
+
+    $total_query = "select COUNT(*) from turno_publicado_completo";
+    $num_turnos_publicados_result = $conn->query($total_query);
+    $num_turnos_publicados = $num_turnos_publicados_result->fetch_row()[0];
+    $maxpage = ceil($num_turnos_publicados/$pagesize);
 
     $turnos_query = "select * from turno";
     $turnos_result = $conn->query($turnos_query);
@@ -87,19 +91,19 @@
 
         </table>
 
-            <nav>
-                <ul class="pagination pagination-lg d-flex justify-content-center">
-                    <li class="page-item <?php if(1==$page) print('disabled') ?>"><a class="page-link"href=".?p=<?php print($page-1) ?>"><i class="bi bi-arrow-left"></i></a></li>
-                    <?php
-                        for($i=max(1,$page-2);$i <= $page+2;$i++){
-                            ?>
-                                <li class="page-item <?php if($i==$page) print('active') ?>"><a class="page-link" href=".?p=<?php print($i) ?>"><?php print($i) ?></a></li>
-                            <?php
-                        }
-                    ?>
-                    <li class="page-item"><a class="page-link" href=".?p=<?php print($page+1) ?>"><i class="bi bi-arrow-right"></i></a></li>
-                </ul>
-            </nav>
+<nav>
+    <ul class="pagination pagination-lg d-flex justify-content-center">
+        <li class="page-item <?php if(1==$page) print('disabled') ?>"><a class="page-link"href=".?p=<?php print($page-1) ?>"><i class="bi bi-arrow-left"></i></a></li>
+        <?php
+            for($i=max(1,$page-2);$i <= $page+2 && $i <= $maxpage;$i++){
+                ?>
+                    <li class="page-item <?php if($i==$page) print('active') ?>"><a class="page-link" href=".?p=<?php print($i) ?>"><?php print($i) ?></a></li>
+                <?php
+            }
+        ?>
+        <li class="page-item <?php if($page>=$maxpage) print('disabled');?>"><a class="page-link" href=".?p=<?php print($page+1) ?>"><i class="bi bi-arrow-right"></i></a></li>
+    </ul>
+</nav>
         
     </div>
     

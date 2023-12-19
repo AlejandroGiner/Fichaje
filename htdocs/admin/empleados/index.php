@@ -31,8 +31,19 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
                     $deptos_result = $conn->query($deptos_query);
                     $deptos = $deptos_result->fetch_all(MYSQLI_BOTH);
 
-                    $query = "select * from empleado_completo";
-                    $result = $conn->query($query);
+                    $query = "select * from empleado_completo LIMIT ? OFFSET ?";
+                    $stmt = $conn->prepare($query);
+                    include($_SERVER['DOCUMENT_ROOT'].'/scripts/pagination.php');
+
+                    $stmt->bind_param('ii',$pagesize,$offset);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $stmt->close();
+
+                    $total_query = "select COUNT(*) from empleado_completo";
+                    $num_empleados_result = $conn->query($total_query);
+                    $num_empleados = $num_empleados_result->fetch_row()[0];
+                    $maxpage = ceil($num_empleados/$pagesize);
                         ?>
                         <div class="table-responsive">
 
@@ -185,6 +196,21 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
                     ?>
                         </table>
                         </div>
+
+<nav>
+    <ul class="pagination pagination-lg d-flex justify-content-center">
+        <li class="page-item <?php if(1==$page) print('disabled') ?>"><a class="page-link"href=".?p=<?php print($page-1) ?>"><i class="bi bi-arrow-left"></i></a></li>
+        <?php
+            for($i=max(1,$page-2);$i <= $page+2 && $i <= $maxpage;$i++){
+                ?>
+                    <li class="page-item <?php if($i==$page) print('active') ?>"><a class="page-link" href=".?p=<?php print($i) ?>"><?php print($i) ?></a></li>
+                <?php
+            }
+        ?>
+        <li class="page-item <?php if($page>=$maxpage) print('disabled');?>"><a class="page-link" href=".?p=<?php print($page+1) ?>"><i class="bi bi-arrow-right"></i></a></li>
+    </ul>
+</nav>
+
         </div>
     </div>
 
