@@ -34,9 +34,13 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
             <table class="table table-striped">
             <tr><th>Hora inicio</th><th>Hora fin</th><th>Plus</th></tr>
             <form method="get" action="grabaTurno.php">
-                <tr><td><input type="time" name="hora_inicio"></td>
-                    <td><input type="time" name="hora_fin"></td>
-                    <td><input type="checkbox" class="form-check-input" name="plus"></td>
+                <tr><td><input class="form-control" type="time" name="hora_inicio"></td>
+                    <td><input class="form-control" type="time" name="hora_fin"></td>
+                    <td>
+                        <div class="form-switch align-self-center">
+                            <input class="form-check-input" type="checkbox" role="switch" class="form-check-input" name="plus">
+                        </div>
+                    </td>
                     <td><button type="submit" value="Añadir" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Añadir</button></td><td></td></tr>           
             </form>
             <?php 

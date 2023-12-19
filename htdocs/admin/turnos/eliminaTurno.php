@@ -12,9 +12,9 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
 </head>
 <body>
     <?php
-        include("../../header.php");
+        include($_SERVER['DOCUMENT_ROOT']."/header.php");
 
-        include_once("../conn.php");
+        include_once($_SERVER['DOCUMENT_ROOT']."/scripts/conn.php");
 
         $delete = "DELETE FROM turno WHERE id_turno="."'".$_REQUEST["id_turno"]."'";
         $stmt = $conn->prepare($delete);
