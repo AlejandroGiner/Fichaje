@@ -6,6 +6,7 @@ if (modificarTurnosModal) {
     const button = event.relatedTarget
     // Extract info from data-bs-* attributes
     const id_turno = button.getAttribute('data-bs-id-turno')
+    const nombre = button.getAttribute('data-bs-nombre')
     const hora_inicio = button.getAttribute('data-bs-hora-inicio')
     const hora_fin = button.getAttribute('data-bs-hora-fin')
     const plus = button.getAttribute('data-bs-plus')
@@ -17,12 +18,13 @@ if (modificarTurnosModal) {
     //const modalTitle = modificarTurnosModal.querySelector('.modal-title')
 
     const modalIdTurno = modificarTurnosModal.querySelector('.modal-body #id_turno')
+    const modalNombre = modificarTurnosModal.querySelector('.modal-body #nombre')
     const modalHoraInicio = modificarTurnosModal.querySelector('.modal-body #hora_inicio')
     const modalHoraFin = modificarTurnosModal.querySelector('.modal-body #hora_fin')
     const modalPlus = modificarTurnosModal.querySelector('.modal-body #plus')
 
     //modalTitle.textContent = `New message to ${recipient}`
-    
+    modalNombre.value = nombre
     modalHoraInicio.value = hora_inicio
     modalHoraFin.value = hora_fin
     modalIdTurno.value = id_turno
