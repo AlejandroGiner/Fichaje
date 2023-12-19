@@ -18,7 +18,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
     ?>
 
-    <div class="container-fluid mt-5">
+    <div class="container mt-5">
         <div class="panel panel-primary">
             <div class="panel-heading text-center">
                 <h2>Empleados</h2>
@@ -49,12 +49,14 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
 
                         <table class="table table-striped table-hover">
                             <tr>
-                                <th>DNI</th>
-                                <th>Nombre</th>
-                                <th>Apellido 1</th>
-                                <th>Apellido 2</th>
-                                <th>Departamento</th>
-                                <th class="col-2">Categoría</th>
+                                <th class="col-1">DNI</th>
+                                <th class="col-1">Nombre</th>
+                                <th class="col-2">Apellido 1</th>
+                                <th class="col-2">Apellido 2</th>
+                                <th class="col-2">Departamento</th>
+                                <th class="col-4">Categoría</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             <form method="get" action="./grabaEmpleado.php">
                                 <tr>

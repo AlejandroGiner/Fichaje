@@ -33,6 +33,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
                             <tr>
                                 <th>Nombre</th>
                                 <th>Presupuesto</th>
+                                <th></th><th></th>
                             </tr>
                             <form method="get" action="./grabaDepartamento.php">
                                 <tr>

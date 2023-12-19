@@ -46,62 +46,59 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
                         ?>
                         <div class="table-responsive">
 
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Categoría</th>
-                                    <th scope="col">Sueldo base</th>
-                                    <th scope="col">Sueldo plus</th>
-                                    <th scope="col">Departamento</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <form method="get" action="./grabaCategoria.php">
-                                        <td><input class="form-control" type="text" name="nombre"></td>
-                                        <td><input class="form-control" type="text" name="sueldo_base"></td>
-                                        <td><input class="form-control" type="text" disabled></td>
-                                        <td><select class="form-select" name="id_departamento" id="id_departamento">
-                                            <option value="none" selected disabled hidden></option> 
-    
-                                            <?php
-                                                foreach($deptos as &$depto){
-                                                    ?>
-                                                    <option value="<?php print($depto['id_departamento'])?>"><?php print($depto['nombre']) ?></option>
-                                                    <?php
-                                                }
-                                            ?>
-                                        </select></td>
-                                        <td><button type="submit" class="btn btn-info bi bi-plus-lg"> Añadir</button></td>
-                                    </form>
-                                </tr>
-                                <?php
-                                while($row = $result->fetch_array()){
-                                    print("<tr><td>".$row["nombre"]."</td>");
-                                    print("<td>".$row["sueldo_base"]."</td>");
-                                    print("<td>".$row["sueldo_plus"]."</td>");
-                                    print("<td>".$row["id_departamento"]."</td>");
-                                    ?>
-                                    <td>
-                                        <button type="button" class="btn btn-primary bi bi-pencil-square" 
-                                        data-bs-toggle="modal" data-bs-target="#modificarCategoriasModal"
-                                        data-bs-id-categoria='<?php print($row['id_categoria']); ?>'
-                                        data-bs-nombre="<?php print($row['nombre']); ?>" 
-                                        data-bs-sueldo-base="<?php print($row['sueldo_base']); ?>"
-                                        data-bs-departamento="<?php print($row['id_departamento']); ?>">
-                                            Modificar
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger bi bi-trash"
-                                            data-bs-toggle="modal" data-bs-target="#eliminarCategoriasModal"
-                                            data-bs-id-categoria="<?php print($row['id_categoria']); ?>">
-                                            Eliminar
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Sueldo base</th>
+                                <th>Sueldo plus</th>
+                                <th>Departamento</th>
+                                <th></th>
+                                <th></th>
+                            </tr>                                
+                            <tr>
+                                <form method="get" action="./grabaCategoria.php">
+                                    <td><input class="form-control" type="text" name="nombre"></td>
+                                    <td><input class="form-control" type="text" name="sueldo_base"></td>
+                                    <td><input class="form-control" type="text" disabled></td>
+                                    <td><select class="form-select" name="id_departamento" id="id_departamento">
+                                        <option value="none" selected disabled hidden></option> 
+
+                                        <?php
+                                            foreach($deptos as &$depto){
+                                                ?>
+                                                <option value="<?php print($depto['id_departamento'])?>"><?php print($depto['nombre']) ?></option>
+                                                <?php
+                                            }
+                                        ?>
+                                    </select></td>
+                                    <td><button type="submit" class="btn btn-info bi bi-plus-lg"> Añadir</button></td>
+                                </form>
+                            </tr>
+                            <?php
+                            while($row = $result->fetch_array()){
+                                print("<tr><td>".$row["nombre"]."</td>");
+                                print("<td>".$row["sueldo_base"]."</td>");
+                                print("<td>".$row["sueldo_plus"]."</td>");
+                                print("<td>".$row["id_departamento"]."</td>");
+                                ?>
+                                <td>
+                                    <button type="button" class="btn btn-primary bi bi-pencil-square" 
+                                    data-bs-toggle="modal" data-bs-target="#modificarCategoriasModal"
+                                    data-bs-id-categoria='<?php print($row['id_categoria']); ?>'
+                                    data-bs-nombre="<?php print($row['nombre']); ?>" 
+                                    data-bs-sueldo-base="<?php print($row['sueldo_base']); ?>"
+                                    data-bs-departamento="<?php print($row['id_departamento']); ?>">
+                                        Modificar
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger bi bi-trash"
+                                        data-bs-toggle="modal" data-bs-target="#eliminarCategoriasModal"
+                                        data-bs-id-categoria="<?php print($row['id_categoria']); ?>">
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
 
                                 <?php
 
