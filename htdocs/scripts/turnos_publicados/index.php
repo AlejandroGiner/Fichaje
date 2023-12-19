@@ -232,14 +232,16 @@
   <!-- - `.toast-container` for spacing between toasts -->
   <!-- - `top-0` & `end-0` to position the toasts in the upper right corner -->
   <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
-  <div class="toast-container top-0 end-0 p-3">
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
 
 <!-- Then put toasts within -->
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-body">
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        Turnos publicados con éxito.
-  </div>
+<div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            <strong>Turnos publicados con éxito.</strong>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
 </div>
 
 </div>
