@@ -37,7 +37,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
                 <tr><td><input class="form-control" type="time" name="hora_inicio"></td>
                     <td><input class="form-control" type="time" name="hora_fin"></td>
                     <td>
-                        <div class="form-switch align-self-center">
+                        <div class="form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" class="form-check-input" name="plus">
                         </div>
                     </td>
