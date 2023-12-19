@@ -41,7 +41,7 @@
     $deptos = $deptos_result->fetch_all(MYSQLI_BOTH);
 
     ?>
-    <div class="table-responsive">
+    <div class="table-responsive mx-5">
         <table class="table table-striped table-hover">
 
             <thead>

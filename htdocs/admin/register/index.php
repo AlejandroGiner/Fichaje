@@ -12,7 +12,7 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
     <?php include($_SERVER['DOCUMENT_ROOT']."/header.php"); ?>
 
 </head>
-<body>
+<body class="overflow-hidden">
     <!-- Fixed navbar -->
     <?php
         include($_SERVER['DOCUMENT_ROOT']."/navbar.php");
@@ -24,9 +24,10 @@ include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
                 <div class="card" style="border-radius: 1rem;">
                     <div class="card-body p-4 p-lg-5 text-black">
                         <form class="container border pt-5 pb-5 " action="register.php" method="POST">
-                            <div class="d-flex align-items-center mb-3 pb-1">
-                                <i class="bi bi-clock-history me-3" style="font-size: 5rem;"></i>
-                                <span class="h1 fw-bold mb-0">Cuándo libro</span>
+                            <div class="d-flex align-items-center justify-content-center mb-3 pb-1">
+                                <i class="bi bi-clock-history me-3 d-none d-md-block" style="font-size: 5rem;"></i>
+                                <img class="d-none d-md-block" src="/img/cuandolibro_logo.svg" alt="Logo"  height="100em">
+                                <img class="d-md-none" src="/img/cuandolibro_logo.svg" alt="Logo"  height="50em">
                             </div>
 
                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Registro de usuario</h5>
