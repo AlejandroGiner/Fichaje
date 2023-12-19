@@ -3,7 +3,7 @@
 const MAX_SESSION_LENGTH_SECONDS = INF;
 
 //Inicio la sesión
-session_start();
+if(session_status() !== PHP_SESSION_ACTIVE) session_start();
 
 //COMPRUEBA QUE EL USUARIO ESTA AUTENTIFICADO
 if(!isset($_SESSION['username'])){
@@ -25,7 +25,7 @@ if($time_since_login>=MAX_SESSION_LENGTH_SECONDS){
 $_SESSION['last_login'] = $now;
 
 if($_SERVER['PHP_SELF']=='/seguridad.php'){
-    header('Location: /');
+    header('Location: /404page.html');
     exit();
 }
 ?>

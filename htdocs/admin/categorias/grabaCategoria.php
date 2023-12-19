@@ -1,4 +1,7 @@
-<?php include ($_SERVER['DOCUMENT_ROOT']."/seguridad.php");?>
+<?php 
+include ($_SERVER['DOCUMENT_ROOT']."/seguridad.php");
+include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
+?>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

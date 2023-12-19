@@ -1,4 +1,6 @@
-<?php
+<?php 
+include ($_SERVER['DOCUMENT_ROOT']."/seguridad.php");
+include ($_SERVER['DOCUMENT_ROOT']."/seguridad_admin.php");
 
 //vemos si el usuario y contraseña es válido
 include_once($_SERVER['DOCUMENT_ROOT']."/scripts/conn.php");
@@ -14,11 +16,11 @@ if($stmt->num_rows>0){
 }
 $stmt->close();
 
+$id_empleado = '33333333Z';
 
-
-$insert = "INSERT INTO usuario_web (username, password) VALUES (?,?)";
+$insert = "INSERT INTO usuario_web (username, password, id_empleado) VALUES (?,?,?)";
 $stmt = $conn->prepare($insert);
-$stmt->bind_param('ss',$_POST["username"],$password_hash);
+$stmt->bind_param('sss',$_POST["username"],$password_hash,$id_empleado);
 
 $password_hash = password_hash($_POST['passwd'],PASSWORD_BCRYPT);
 
