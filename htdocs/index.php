@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 </head>
-<body>
+<body class="overflow-hidden">
     <!-- Fixed navbar -->
     <?php
         include($_SERVER['DOCUMENT_ROOT']."/header.php");
@@ -24,7 +24,11 @@
         </div>
     </div>
     -->
-    <img src="/img/bg-<?php print('f') ?>.png" class="img-fluid">
+    
+    <img class="d-lg-none img-fluid" src="/img/bg-mobile.png">
+    <img class="d-lg-none position-fixed top-50 start-50 translate-middle" src="/img/cuandolibro_logo_white.svg">
+    <img class="d-none d-lg-block img-fluid" src="/img/bg-desktop.png">
+    
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
