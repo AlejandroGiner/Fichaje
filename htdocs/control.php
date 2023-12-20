@@ -25,6 +25,8 @@ if ($stored_hash!=null && password_verify($_POST['passwd'],$stored_hash)){
     $stmt->fetch();
     $stmt->close();
     $conn->close();
+
+    setcookie('username',$_SESSION['username']);
     
     header("Location: /");
 }
