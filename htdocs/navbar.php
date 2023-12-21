@@ -11,6 +11,10 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
 
+      <a class='nav-link px-5'>
+        <i class="bi bi-door-open d-block mb-1 text-center d-none d-xl-block" style='font-size: 2rem;'></i>Visitas: <?php print($_COOKIE['visitas']); ?>
+      </a>
+
       <?php if(isset($_SESSION['tipo_empleado']) && $_SESSION['tipo_empleado'] != 3) { ?>
         <a href="/user/mis_turnos" class='nav-link px-5 <?php if(str_contains($_SERVER['PHP_SELF'],'mis_turnos')){print('active');}?>'>
           <i class='bi-calendar-week d-block mb-1 text-center d-none d-xl-block' style='font-size: 2rem;'></i>Mis turnos

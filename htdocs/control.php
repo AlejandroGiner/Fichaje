@@ -12,7 +12,7 @@ $stmt->bind_result($stored_hash);
 $stmt->fetch();
 $stmt->close();
 
-if ((isset($_COOKIE['username'])) || ($stored_hash!=null && password_verify($_POST['passwd'],$stored_hash))){
+if ($stored_hash!=null && password_verify($_POST['passwd'],$stored_hash)){
     //usuario y contraseña válidos
     $_SESSION['username']= $_POST["username"];
     $_SESSION['last_login'] = date('Y-n-j H:i:s');
@@ -26,8 +26,9 @@ if ((isset($_COOKIE['username'])) || ($stored_hash!=null && password_verify($_PO
     $stmt->close();
     $conn->close();
 
-    setcookie('username',$_SESSION['username']);
-    setcookie('nombre',$_SESSION['nombre']);
+    $visitas = $_COOKIE['visitas'] ?? 0;
+
+    setcookie('visitas',$visitas + 1);
     
     header("Location: /");
 }
